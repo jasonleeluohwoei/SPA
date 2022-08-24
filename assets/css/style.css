@@ -1064,15 +1064,15 @@ nav.navbar {
 	3.1. Banner
 -------------------------------*/
 .banner-section {
-  background-image: url("../images/banner-image.jpg");
+  /* background-image: url("../images/banner-image.jpg");
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   padding: 160px 0;
   position: relative;
 }
 .banner-section::after {
-  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+  /* background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0; */
   bottom: 0;
   content: "";
   height: 7px;
@@ -1222,6 +1222,7 @@ nav.navbar {
 .col-list-3 {
   float: left;
   padding: 0 15px;
+  /* height: auto; */
   width: 33%;
 }
 .col-list-3:nth-child(3n) {
@@ -1235,7 +1236,9 @@ nav.navbar {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-top: 40px;
 }
-.car-info-box { position:relative;}
+.car-info-box { 
+  position:relative;
+}
 .car-info-box ul {
   background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
   bottom: 0;
