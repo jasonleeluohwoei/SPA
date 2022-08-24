@@ -54,7 +54,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 <html lang="en">
 <head>
 
-<title>Car Rental | Vehicle Details</title>
+<title>Smart Power Auto | Vehicle Details</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
