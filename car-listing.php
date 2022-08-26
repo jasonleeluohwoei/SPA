@@ -123,7 +123,7 @@ foreach($results as $result)
           <div class="sidebar_filter">
             <form action="search-carresult.php" method="post">
               <div class="form-group select">
-                <select class="form-control" name="brand">
+                <select class="form-control" name="brand" required>
                   <option>Select Brand</option>
 
                   <?php $sql = "SELECT * from  tblbrands ";
@@ -141,7 +141,7 @@ foreach($results as $result)
                 </select>
               </div>
               <div class="form-group select">
-                <select class="form-control" name="fueltype">
+                <select class="form-control" name="fueltype" required>
                   <option>Select Fuel Type</option>
 <option value="Petrol">Petrol</option>
 <option value="Diesel">Diesel</option>
