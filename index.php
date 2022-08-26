@@ -79,11 +79,11 @@ error_reporting(0);
       <div class="row">
 
         <!-- Nav tabs -->
-        <div class="recent-tab">
+        <!-- <div class="recent-tab">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#resentnewcar" role="tab" data-toggle="tab">New Car</a></li>
           </ul>
-        </div>
+        </div> -->
         <!-- Recently Listed New Cars -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="resentnewcar">

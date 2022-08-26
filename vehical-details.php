@@ -341,7 +341,7 @@ $_SESSION['brndid']=$result->bid;
           <p>Share: <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a> </p>
         </div>
         <div class="sidebar_widget">
-          <div class="widget_heading">
+          <!-- <div class="widget_heading">
             <h5><i class="fa fa-envelope" aria-hidden="true"></i>Book Now</h5>
           </div>
           <form method="post">
@@ -355,17 +355,23 @@ $_SESSION['brndid']=$result->bid;
             </div>
             <div class="form-group">
               <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
-            </div>
-          <?php if($_SESSION['login'])
+            </div> -->
+          <!-- <php if($_SESSION['login'])
               {?>
               <div class="form-group">
                 <input type="submit" class="btn"  name="submit" value="Book Now">
               </div>
-              <?php } else { ?>
+              <php } else { >
 <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login For Book</a>
 
-              <?php } ?>
-          </form>
+              <php } > -->
+
+              <!-- <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script>           -->
+            <!-- </form> -->
+
+            <a href="https://services.tochat.be/n/60122537316" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a>
+
+            <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script>
         </div>
       </aside>
       <!--/Side-Bar--> 
