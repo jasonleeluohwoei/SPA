@@ -338,11 +338,11 @@ if (strlen($_SESSION['alogin']) == 0) {
 														// var ppday = document.getElementById("priceperday");
 														// var pcost = document.getElementById("priceofcost");
 														// var psale = document.getElementById("priceofsale");
-														if (d == "rental") {
+														if (d == "Rental") {
 															rental.style.display = "block";
 															sale.style.display = "none";
 															// ppday.attributes = "required";
-														} else if (d == "sale") {
+														} else if (d == "Sale") {
 															rental.style.display = "none";
 															sale.style.display = "block";
 															// pcost.attributes = "required";
