@@ -369,7 +369,14 @@ $_SESSION['brndid']=$result->bid;
               <!-- <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script>           -->
             <!-- </form> -->
 
-            <a href="https://services.tochat.be/n/60122537316" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a>
+            <!-- <a href="https://services.tochat.be/n/60122537316?" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a> -->
+              <!-- <a href="whatsapp://send?text=<php echo urlencode ('http://www.example.com/index.php?route=product/product&product_id=110'); >" data-action="share/whatsapp/share">Share via Whatsapp</a> -->
+              <?php  
+              $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";  
+              $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  
+              // echo "The URL of current page: ".$CurPageURL;  
+              ?>    
+              <a href="https://wa.me/60122537316?text=<?php echo "I'm interested to know more information about this car: ".$CurPageURL ; ?>" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a>
 
             <!-- <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script> -->
         </div>
