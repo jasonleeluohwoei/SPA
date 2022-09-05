@@ -306,9 +306,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 													<label for="saletype" class="col-sm-2 control-label">Select Sale Type<span style="color:red">*</span></label>
 													<div class="col-sm-4">
 														<select id="saletype" class="selectpicker" name="saletype" onchange="Selecttype(this.value);" required>
-															<option value="select"> Select</option>
-															<option value="rental">Rental</option>
-															<option value="sale">Sale</option>
+															<option value="Select"> Select</option>
+															<option value="Rental">Rental</option>
+															<option value="Sale">Sale</option>
 														</select>
 													</div>
 												</div>
