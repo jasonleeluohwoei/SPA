@@ -327,8 +327,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 															<div class="col-sm-4">
 																<select id="saletype" class="selectpicker" name="saletype" onchange="Selecttype(this.value);" required>
 																	<option value="<?php echo htmlentities($result->VehiclesSaleType); ?>"> <?php echo htmlentities($result->VehiclesSaleType); ?> </option>
-																	<option value="rental">Rental</option>
-																	<option value="sale">Sale</option>
+																	<option value="Rental">Rental</option>
+																	<option value="Sale">Sale</option>
 																</select>
 															</div>
 														</div>
