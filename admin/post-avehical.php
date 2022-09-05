@@ -91,12 +91,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$lastInsertId = $dbh->lastInsertId();
 		if ($lastInsertId) {
 			$msg = "Vehicle posted successfully for rental";
-			header('location:manage-vehicles.php');
-			exit();
+			// header('location:manage-vehicles.php');
+			// exit();
 		} else {
 			$error = "Something went wrong. Please try again (rental)";
-			header('location:manage-vehicles.php');
-			exit();
+			// header('location:manage-vehicles.php');
+			// exit();
 		}
 	} elseif (isset($_POST['submit']) && ($_POST['saletype']) == 'Sale') {
 		$vehicletitle = $_POST['vehicletitle'];
@@ -183,12 +183,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$lastInsertId = $dbh->lastInsertId();
 		if ($lastInsertId) {
 			$msg = "Vehicle posted successfully for sale";
-			header('location:manage-vehicles.php');
-			exit();
+			// header('location:manage-vehicles.php');
+			// exit();
 		} else {
 			$error = "Something went wrong. Please try again (sale)";
-			header('location:manage-vehicles.php');
-			exit();
+			// header('location:manage-vehicles.php');
+			// exit();
 		}
 	}
 
