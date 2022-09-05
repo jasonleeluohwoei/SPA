@@ -6,7 +6,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 	header('location:index.php');
 } else {
 
-	if (isset($_POST['submit']) && ($_POST['saletype']) == 'rental') {
+	if (isset($_POST['submit']) && ($_POST['saletype']) == 'Rental') {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
@@ -98,7 +98,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 			header('location:manage-vehicles.php');
 			exit();
 		}
-	} elseif (isset($_POST['submit']) && ($_POST['saletype']) == 'sale') {
+	} elseif (isset($_POST['submit']) && ($_POST['saletype']) == 'Sale') {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];

@@ -6,7 +6,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 	header('location:index.php');
 } else {
 
-	if (isset($_POST['submit']) && ($_POST['saletype']) == 'rental') {
+	if (isset($_POST['submit']) && ($_POST['saletype']) == 'Rental') {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
@@ -91,10 +91,14 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$lastInsertId = $dbh->lastInsertId();
 		if ($lastInsertId) {
 			$msg = "Vehicle posted successfully for rental";
+			header('location:manage-vehicles.php');
+			exit();
 		} else {
 			$error = "Something went wrong. Please try again (rental)";
+			header('location:manage-vehicles.php');
+			exit();
 		}
-	} elseif (isset($_POST['submit']) && ($_POST['saletype']) == 'sale') {
+	} elseif (isset($_POST['submit']) && ($_POST['saletype']) == 'Sale') {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
@@ -179,8 +183,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$lastInsertId = $dbh->lastInsertId();
 		if ($lastInsertId) {
 			$msg = "Vehicle posted successfully for sale";
+			header('location:manage-vehicles.php');
+			exit();
 		} else {
 			$error = "Something went wrong. Please try again (sale)";
+			header('location:manage-vehicles.php');
+			exit();
 		}
 	}
 
@@ -306,9 +314,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 													<label for="saletype" class="col-sm-2 control-label">Select Sale Type<span style="color:red">*</span></label>
 													<div class="col-sm-4">
 														<select id="saletype" class="selectpicker" name="saletype" onchange="Selecttype(this.value);" required>
-															<option value="select"> Select</option>
-															<option value="rental">Rental</option>
-															<option value="sale">Sale</option>
+															<option value="Select"> Select</option>
+															<option value="Rental">Rental</option>
+															<option value="Sale">Sale</option>
 														</select>
 													</div>
 												</div>
@@ -347,7 +355,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 															sale.style.display = "block";
 															// pcost.attributes = "required";
 															// psale.attributes = "required";
-														} else if (d == "select") {
+														} else if (d == "Select") {
 															rental.style.display = "none";
 															sale.style.display = "none";
 														}
