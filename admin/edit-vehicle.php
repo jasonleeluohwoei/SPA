@@ -11,8 +11,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
 		$saletype = $_POST['saletype'];
-		// $priceofcost = $_POST['priceofcost'];
-		// $priceofsale = $_POST['priceofsale'];
+		$priceofcost = '0.00';
+		$priceofsale = '0.00';
 		$priceperday = $_POST['priceperday'];
 		$fueltype = $_POST['fueltype'];
 		$modelyear = $_POST['modelyear'];
@@ -40,19 +40,19 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img4"]["tmp_name"], "img/vehicleimages/" . $_FILES["img4"]["name"]);
 		move_uploaded_file($_FILES["img5"]["tmp_name"], "img/vehicleimages/" . $_FILES["img5"]["name"]);
 
-		// $sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,PriceOfCost,
-		// PriceOfSale,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
-		// AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		// CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,:priceofcost,:priceofsale,
-		// :fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
-		// :antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
-
-		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,
-		FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
+		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,PriceOfCost,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
 		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,
+		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,:priceofcost,:priceofsale,
 		:fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
+
+		// $sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,
+		// FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
+		// AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
+		// CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,
+		// :fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
+		// :antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
 		$query->bindParam(':brand', $brand, PDO::PARAM_STR);
@@ -62,9 +62,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 		$query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
 
-		// $query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
+		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
 
-		// $query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
+		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
 
 
 		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
@@ -105,7 +105,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$saletype = $_POST['saletype'];
 		$priceofcost = $_POST['priceofcost'];
 		$priceofsale = $_POST['priceofsale'];
-		// $priceperday = $_POST['priceperday'];
+		$priceperday = '0.00';
 		$fueltype = $_POST['fueltype'];
 		$modelyear = $_POST['modelyear'];
 		$seatingcapacity = $_POST['seatingcapacity'];
@@ -132,19 +132,19 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img4"]["tmp_name"], "img/vehicleimages/" . $_FILES["img4"]["name"]);
 		move_uploaded_file($_FILES["img5"]["tmp_name"], "img/vehicleimages/" . $_FILES["img5"]["name"]);
 
-		// $sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,PriceOfCost,
-		// PriceOfSale,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
-		// AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		// CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,:priceofcost,:priceofsale,
-		// :fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
-		// :antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
-
-		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PriceOfCost,PriceOfSale,
-		FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
+		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,PriceOfCost,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
 		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceofcost,:priceofsale,
+		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,:priceofcost,:priceofsale,
 		:fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
+
+		// $sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PriceOfCost,PriceOfSale,
+		// FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
+		// AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
+		// CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceofcost,:priceofsale,
+		// :fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
+		// :antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
 		$query->bindParam(':brand', $brand, PDO::PARAM_STR);
@@ -152,7 +152,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
 
-		// $query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
+		$query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
 
 		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
 
