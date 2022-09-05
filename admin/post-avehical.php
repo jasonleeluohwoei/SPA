@@ -186,11 +186,8 @@ foreach($results as $result)
 </div>
 </div>
 
+
 <div class="form-group">
-<label class="col-sm-2 control-label">Price Per Day(in USD)<span style="color:red">*</span></label>
-<div class="col-sm-4">
-<input type="text" name="priceperday" class="form-control" required>
-</div>
 <label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="fueltype" required>
@@ -201,8 +198,54 @@ foreach($results as $result)
 <option value="CNG">CNG</option>
 </select>
 </div>
+
+<label for="saletype" class="col-sm-2 control-label">Select Sale Type<span style="color:red">*</span></label>
+<div class="col-sm-4">
+<select id="saletype" class="selectpicker" name="saletype"  onchange="Selecttype(this.value);" required>
+<option value="select"> Select</option>
+<option value="rental">Rental</option>
+<option value="sale">Sale</option>
+</select>
+</div>
 </div>
 
+<div id="rentalbox" class="form-group">
+<label class="col-sm-2 control-label">Price Per Day(in RM)<span style="color:red">*</span></label>
+<div class="col-sm-4">
+<input id="priceperday" type="text" name="priceperday" class="form-control" required>
+</div>
+</div> 
+
+<div id="salebox" class="form-group">
+<label class="col-sm-2 control-label">Price of Cost<span style="color:red">*</span></label>
+<div class="col-sm-4">
+<input type="text" name="priceofcost" class="form-control" required>
+</div>
+<label class="col-sm-2 control-label">Price of Sale<span style="color:red">*</span></label>
+<div class="col-sm-4">
+<input type="text" name="priceofsale" class="form-control" required>
+</div>
+</div> 
+
+<script>
+function Selecttype() {
+  var d = document.getElementById("saletype").value;
+  var rental = document.getElementById("rentalbox");
+  var sale = document.getElementById("salebox");
+  if(d == "rental"){
+	rental.style.display = "block";
+	sale.style.display ="none";
+  }else if (d =="sale"){
+	rental.style.display = "none";
+	sale.style.display ="block";
+  }else if (d== "select"){
+	rental.style.display = "none";
+	sale.style.display ="none";
+  }
+}
+
+Selecttype();
+</script>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
@@ -339,20 +382,21 @@ Image 5<input type="file" name="img5">
 
 
 
-											<div class="form-group">
-												<div class="col-sm-8 col-sm-offset-2">
-													<button class="btn btn-default" type="reset">Cancel</button>
-													<button class="btn btn-primary" name="submit" type="submit">Save changes</button>
-												</div>
-											</div>
+											
 
 										</form>
+										
 									</div>
 								</div>
 							</div>
 						</div>
 						
-					
+					<div class="form-group">
+							<div class="col-sm-8 col-sm-offset-2">
+							<button class="btn btn-default" type="reset">Cancel</button>
+							<button class="btn btn-primary" name="submit" type="submit">Save changes</button>
+							</div>
+					</div>
 
 					</div>
 				</div>
@@ -373,6 +417,8 @@ Image 5<input type="file" name="img5">
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
+
+	
 </body>
 </html>
 <?php } ?>
