@@ -10,18 +10,26 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
+		$modelyear = $_POST['modelyear'];
+		$seatingcapacity = $_POST['seatingcapacity'];
+		$vehicleplate = $_POST['vehicleplate'];
+		$vehiclemileage = $_POST['vehiclemileage'];
+		$fueltype = $_POST['fueltype'];
 		$saletype = $_POST['saletype'];
 		$priceofcost = '0.00';
 		$priceofsale = '0.00';
-		$priceperday = $_POST['priceperday'];
-		$fueltype = $_POST['fueltype'];
-		$modelyear = $_POST['modelyear'];
-		$seatingcapacity = $_POST['seatingcapacity'];
+		// $priceperday = $_POST['priceperday'];
+		$priceperweek = $_POST['priceperweek'];
+		$pricepermonth = $_POST['pricepermonth'];
 		$vimage1 = $_FILES["img1"]["name"];
 		$vimage2 = $_FILES["img2"]["name"];
 		$vimage3 = $_FILES["img3"]["name"];
 		$vimage4 = $_FILES["img4"]["name"];
 		$vimage5 = $_FILES["img5"]["name"];
+		$vimage6 = $_FILES["img6"]["name"];
+		$vimage7 = $_FILES["img7"]["name"];
+		$vimage8 = $_FILES["img8"]["name"];
+		$vimage9 = $_FILES["img9"]["name"];
 		$airconditioner = $_POST['airconditioner'];
 		$powerdoorlocks = $_POST['powerdoorlocks'];
 		$antilockbrakingsys = $_POST['antilockbrakingsys'];
@@ -39,42 +47,41 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img3"]["tmp_name"], "img/vehicleimages/" . $_FILES["img3"]["name"]);
 		move_uploaded_file($_FILES["img4"]["tmp_name"], "img/vehicleimages/" . $_FILES["img4"]["name"]);
 		move_uploaded_file($_FILES["img5"]["tmp_name"], "img/vehicleimages/" . $_FILES["img5"]["name"]);
+		move_uploaded_file($_FILES["img6"]["tmp_name"], "img/vehicleimages/" . $_FILES["img6"]["name"]);
+		move_uploaded_file($_FILES["img7"]["tmp_name"], "img/vehicleimages/" . $_FILES["img7"]["name"]);
+		move_uploaded_file($_FILES["img8"]["tmp_name"], "img/vehicleimages/" . $_FILES["img8"]["name"]);
+		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
 
-		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,PriceOfCost,
-		PriceOfSale,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
+		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerWeek,PricePerMonth,PriceOfCost,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
 		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,:priceofcost,:priceofsale,
-		:fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
+		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
+		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 
-		// $sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,
-		// FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
-		// AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		// CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,
-		// :fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
-		// :antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
 		$query->bindParam(':brand', $brand, PDO::PARAM_STR);
 		$query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
-
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
-
-		$query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
-
+		$query->bindParam(':priceperweek', $priceperweek, PDO::PARAM_STR);
+		$query->bindParam(':pricepermonth', $pricepermonth, PDO::PARAM_STR);
 		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
-
 		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
-
-
 		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
 		$query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
 		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
+		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
+		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
 		$query->bindParam(':vimage1', $vimage1, PDO::PARAM_STR);
 		$query->bindParam(':vimage2', $vimage2, PDO::PARAM_STR);
 		$query->bindParam(':vimage3', $vimage3, PDO::PARAM_STR);
 		$query->bindParam(':vimage4', $vimage4, PDO::PARAM_STR);
 		$query->bindParam(':vimage5', $vimage5, PDO::PARAM_STR);
+		$query->bindParam(':vimage6', $vimage6, PDO::PARAM_STR);
+		$query->bindParam(':vimage7', $vimage7, PDO::PARAM_STR);
+		$query->bindParam(':vimage8', $vimage8, PDO::PARAM_STR);
+		$query->bindParam(':vimage9', $vimage9, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
 		$query->bindParam(':antilockbrakingsys', $antilockbrakingsys, PDO::PARAM_STR);
@@ -102,18 +109,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
+		$modelyear = $_POST['modelyear'];
+		$seatingcapacity = $_POST['seatingcapacity'];
+		$vehicleplate = $_POST['vehicleplate'];
+		$vehiclemileage = $_POST['vehiclemileage'];
+		$fueltype = $_POST['fueltype'];
 		$saletype = $_POST['saletype'];
 		$priceofcost = $_POST['priceofcost'];
 		$priceofsale = $_POST['priceofsale'];
-		$priceperday = '0.00';
-		$fueltype = $_POST['fueltype'];
-		$modelyear = $_POST['modelyear'];
-		$seatingcapacity = $_POST['seatingcapacity'];
+		$priceperweek = '0.00';
+		$pricepermonth = '0.00';
 		$vimage1 = $_FILES["img1"]["name"];
 		$vimage2 = $_FILES["img2"]["name"];
 		$vimage3 = $_FILES["img3"]["name"];
 		$vimage4 = $_FILES["img4"]["name"];
 		$vimage5 = $_FILES["img5"]["name"];
+		$vimage6 = $_FILES["img6"]["name"];
+		$vimage7 = $_FILES["img7"]["name"];
+		$vimage8 = $_FILES["img8"]["name"];
+		$vimage9 = $_FILES["img9"]["name"];
 		$airconditioner = $_POST['airconditioner'];
 		$powerdoorlocks = $_POST['powerdoorlocks'];
 		$antilockbrakingsys = $_POST['antilockbrakingsys'];
@@ -131,42 +145,41 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img3"]["tmp_name"], "img/vehicleimages/" . $_FILES["img3"]["name"]);
 		move_uploaded_file($_FILES["img4"]["tmp_name"], "img/vehicleimages/" . $_FILES["img4"]["name"]);
 		move_uploaded_file($_FILES["img5"]["tmp_name"], "img/vehicleimages/" . $_FILES["img5"]["name"]);
+		move_uploaded_file($_FILES["img6"]["tmp_name"], "img/vehicleimages/" . $_FILES["img6"]["name"]);
+		move_uploaded_file($_FILES["img7"]["tmp_name"], "img/vehicleimages/" . $_FILES["img7"]["name"]);
+		move_uploaded_file($_FILES["img8"]["tmp_name"], "img/vehicleimages/" . $_FILES["img8"]["name"]);
+		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
 
-		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerDay,PriceOfCost,
-		PriceOfSale,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
+		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerWeek,PricePerMonth,PriceOfCost,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
 		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperday,:priceofcost,:priceofsale,
-		:fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
+		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
+		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 
-		// $sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PriceOfCost,PriceOfSale,
-		// FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,
-		// AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
-		// CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceofcost,:priceofsale,
-		// :fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,
-		// :antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
 		$query->bindParam(':brand', $brand, PDO::PARAM_STR);
 		$query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
-
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
-
-		$query->bindParam(':priceperday', $priceperday, PDO::PARAM_STR);
-
+		$query->bindParam(':priceperweek', $priceperweek, PDO::PARAM_STR);
+		$query->bindParam(':pricepermonth', $pricepermonth, PDO::PARAM_STR);
 		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
-
 		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
-
-
 		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
 		$query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
 		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
+		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
+		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
 		$query->bindParam(':vimage1', $vimage1, PDO::PARAM_STR);
 		$query->bindParam(':vimage2', $vimage2, PDO::PARAM_STR);
 		$query->bindParam(':vimage3', $vimage3, PDO::PARAM_STR);
 		$query->bindParam(':vimage4', $vimage4, PDO::PARAM_STR);
 		$query->bindParam(':vimage5', $vimage5, PDO::PARAM_STR);
+		$query->bindParam(':vimage6', $vimage6, PDO::PARAM_STR);
+		$query->bindParam(':vimage7', $vimage7, PDO::PARAM_STR);
+		$query->bindParam(':vimage8', $vimage8, PDO::PARAM_STR);
+		$query->bindParam(':vimage9', $vimage9, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
 		$query->bindParam(':antilockbrakingsys', $antilockbrakingsys, PDO::PARAM_STR);
@@ -298,6 +311,27 @@ if (strlen($_SESSION['alogin']) == 0) {
 													</div>
 												</div>
 
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<input type="text" name="modelyear" class="form-control" required>
+													</div>
+													<label class="col-sm-2 control-label">Seating Capacity<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<input type="text" name="seatingcapacity" class="form-control" required>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Vehicle Plate</label>
+													<div class="col-sm-4">
+														<input type="text" name="vehicleplate" class="form-control">
+													</div>
+													<label class="col-sm-2 control-label">Vehicle Mileage (Per KM)<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<input type="text" name="vehiclemileage" class="form-control" required>
+													</div>
+												</div>
 
 												<div class="form-group">
 													<label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
@@ -322,18 +356,26 @@ if (strlen($_SESSION['alogin']) == 0) {
 												</div>
 
 												<div id="rentalbox" class="form-group">
-													<label class="col-sm-2 control-label">Price Per Day(in RM)<span style="color:red">*</span></label>
-													<div class="col-sm-4">
+													<!-- <label class="col-sm-2 control-label">Price Per Day (RM)<span style="color:red">*</span></label>
+													<div class="col-sm-2">
 														<input id="priceperday" type="text" name="priceperday" class="form-control">
+													</div> -->
+													<label class="col-sm-2 control-label">Price Per Week (RM)<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<input id="priceperweek" type="text" name="priceperweek" class="form-control">
+													</div>
+													<label class="col-sm-2 control-label">Price Per Month (RM)<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<input id="pricepermonth" type="text" name="pricepermonth" class="form-control">
 													</div>
 												</div>
 
 												<div id="salebox" class="form-group">
-													<label class="col-sm-2 control-label">Price of Cost<span style="color:red">*</span></label>
+													<label class="col-sm-2 control-label">Price of Cost (RM)<span style="color:red">*</span></label>
 													<div class="col-sm-4">
 														<input id="priceofcost" type="text" name="priceofcost" class="form-control">
 													</div>
-													<label class="col-sm-2 control-label">Price of Sale<span style="color:red">*</span></label>
+													<label class="col-sm-2 control-label">Price of Sale (RM)<span style="color:red">*</span></label>
 													<div class="col-sm-4">
 														<input id="priceofsale" type="text" name="priceofsale" class="form-control">
 													</div>
@@ -364,16 +406,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 													Selecttype();
 												</script>
 
-												<div class="form-group">
-													<label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
-													<div class="col-sm-4">
-														<input type="text" name="modelyear" class="form-control" required>
-													</div>
-													<label class="col-sm-2 control-label">Seating Capacity<span style="color:red">*</span></label>
-													<div class="col-sm-4">
-														<input type="text" name="seatingcapacity" class="form-control" required>
-													</div>
-												</div>
 												<div class="hr-dashed"></div>
 
 
@@ -396,7 +428,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 													</div>
 												</div>
 
-
 												<div class="form-group">
 													<div class="col-sm-4">
 														Image 4<span style="color:red">*</span><input type="file" name="img4" required>
@@ -404,7 +435,21 @@ if (strlen($_SESSION['alogin']) == 0) {
 													<div class="col-sm-4">
 														Image 5<input type="file" name="img5">
 													</div>
+													<div class="col-sm-4">
+														Image 6<input type="file" name="img6">
+													</div>
+												</div>
 
+												<div class="form-group">
+													<div class="col-sm-4">
+														Image 7<input type="file" name="img7" required>
+													</div>
+													<div class="col-sm-4">
+														Image 8<input type="file" name="img8">
+													</div>
+													<div class="col-sm-4">
+														Image 9<input type="file" name="img9">
+													</div>
 												</div>
 												<div class="hr-dashed"></div>
 										</div>
