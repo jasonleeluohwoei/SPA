@@ -88,7 +88,7 @@ error_reporting(0);
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-            <?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand limit 9";
+            <?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerWeek,tblvehicles.PriceOfSale,tblvehicles.VehiclesSaleType,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand limit 9";
             $query = $dbh->prepare($sql);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -107,9 +107,19 @@ error_reporting(0);
                         <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity); ?> seats</li>
                       </ul>
                     </div>
+
                     <div class="car-title-m">
-                      <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"> <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
-                      <span class="price">$<?php echo htmlentities($result->PricePerDay); ?> /Day</span>
+                      <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"> <?php echo htmlentities($result->VehiclesTitle); ?></a></h6><br><br>
+
+                      <p class="price" style="margin-right:200px;">
+                        <?php 
+                          if($result->VehiclesSaleType=='Rental'){
+                            echo "RM $result->PricePerWeek Per Week";
+                          }else{
+                            echo "RM $result->PriceOfSale For Sale";
+                          }
+                        ?>
+                      </p>
                     </div>
                     <div class="inventory_info_m">
                       <p><?php echo substr($result->VehiclesOverview, 0, 70); ?></p>

@@ -117,6 +117,11 @@ $_SESSION['brndid']=$result->bid;
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage2);?>" class="img-responsive" alt="image" width="900" height="560"></div>
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage3);?>" class="img-responsive" alt="image" width="900" height="560"></div>
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage4);?>" class="img-responsive"  alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage5);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage6);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage7);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage8);?>" class="img-responsive"  alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage9);?>" class="img-responsive"  alt="image" width="900" height="560"></div>
   <?php if($result->Vimage5=="")
 {
 
@@ -139,9 +144,11 @@ $_SESSION['brndid']=$result->bid;
         <div class="price_info">
           <?php 
           if($result->VehiclesSaleType=='Rental'){
-            echo"<p>$ $result->PricePerDay</p>Per Day";
+            // echo"<p>$ $result->PricePerDay</p>Per Day";
+            echo"<p style='font-size: 30px; padding-top: 20px;'>RM $result->PricePerWeek</p>Per Week";
+            echo"<p style='font-size: 30px; padding-top: 20px;'>RM $result->PricePerMonth</p>Per Month";
           }else{
-            echo"<p>$ $result->PriceOfSale</p>To Sale";
+            echo"<p>RM $result->PriceOfSale</p>To Sale";
           }
           ?>
          
@@ -161,10 +168,26 @@ $_SESSION['brndid']=$result->bid;
               <h5><?php echo htmlentities($result->FuelType);?></h5>
               <p>Fuel Type</p>
             </li>
-       
             <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
               <h5><?php echo htmlentities($result->SeatingCapacity);?></h5>
               <p>Seats</p>
+            </li>
+            <li> <i class="fa fa-car" aria-hidden="true"></i>
+              <h5>
+                <?php
+                  if($result->VehiclesPlate!=""){
+                    echo"$result->VehiclesPlate";
+                  }else{
+                    echo"No Vehicle Plate";
+                  }
+                ?>
+                <!-- <php echo htmlentities($result->VehiclesPlate);?> -->
+              </h5>
+              <p>Vehicle Plate</p>
+            </li>
+            <li> <i class="fa fa-tachometer" aria-hidden="true"></i>
+              <h5><?php echo htmlentities($result->VehiclesMileage);?>/KM</h5>
+              <p>Vehicle Mileage</p>
             </li>
           </ul>
         </div>
@@ -415,12 +438,12 @@ foreach($results as $result)
             </div>
             <div class="product-listing-content">
               <h5 style="height:55px;"><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
-              <p class="list-price">$
+              <p class="list-price">
                 <?php 
                 if($result->VehiclesSaleType=='Rental'){
-                  echo "$result->PricePerDay <sub>Per Day</sub>";
+                  echo "RM $result->PricePerDay <sub>Per Day</sub>";
                 }else{
-                  echo "$result->PriceOfSale <sub>For Sale</sub>";
+                  echo "RM $result->PriceOfSale <sub>For Sale</sub>";
                 }
                 ?>
               </p>

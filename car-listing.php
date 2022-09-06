@@ -105,9 +105,9 @@ foreach($results as $result)
             <p class="list-price">
               <?php
                 if($result->VehiclesSaleType=='Rental'){
-                  echo "$result->PricePerDay Per Day";
+                  echo "RM $result->PricePerWeek Per Week";
                 }else{
-                  echo "$result->PriceOfSale For Sale";
+                  echo "RM $result->PriceOfSale For Sale";
                 }
               ?>
               <!-- $<php echo htmlentities($result->PricePerDay);?> Per Day -->
@@ -187,9 +187,9 @@ foreach($results as $result)
                   <p class="widget_price">
                   <?php 
                     if($result->VehiclesSaleType=='Rental'){
-                      echo "$result->PricePerDay Per Day";
+                      echo "RM $result->PricePerWeek Per Week";
                     }else{
-                      echo "$result->PriceOfSale For Sale";
+                      echo "RM $result->PriceOfSale For Sale";
                     }
                   ?>
                   <!-- $<php echo htmlentities($result->PricePerDay);?> Per Day -->
