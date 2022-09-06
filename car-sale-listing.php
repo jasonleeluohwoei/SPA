@@ -8,7 +8,7 @@ error_reporting(0);
 <html lang="en">
 <head>
 
-<title>Smart Power Auto | Car Listing</title>
+<title>Smart Power Auto | Car Listing For Sale</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -88,7 +88,7 @@ $cnt=$query->rowCount();
 </div>
 </div>
 
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesSaleType = 'Sale'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -152,9 +152,9 @@ foreach($results as $result)
               <div class="form-group select">
                 <select class="form-control" name="fueltype" required>
                   <option>Select Fuel Type</option>
-<option value="Petrol">Petrol</option>
-<option value="Diesel">Diesel</option>
-<option value="Hybrid">Hybrid</option>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Hybrid">Hybrid</option>
                 </select>
               </div>
              
@@ -171,7 +171,7 @@ foreach($results as $result)
           </div>
           <div class="recent_addedcars">
             <ul>
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand order by id desc limit 4";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesSaleType = 'Sale' order by id desc limit 4";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
