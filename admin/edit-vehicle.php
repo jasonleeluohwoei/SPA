@@ -618,8 +618,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 																<div class="form-group">
 																	<div class="col-sm-8 col-sm-offset-2">
-
 																		<button class="btn btn-primary" name="submit" type="submit" style="margin-top:4%">Save changes</button>
+																		<button class="btn btn-primary" name="edit" type="button" onclick="document.location.href='manage-vehicles.php';" style=" margin-top:4%">Back to previous page</button>
 																	</div>
 																</div>
 
