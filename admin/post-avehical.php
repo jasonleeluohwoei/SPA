@@ -307,7 +307,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 															<option value="Petrol">Petrol</option>
 															<option value="Diesel">Diesel</option>
-														
+															<option value="Hybrid">Hybrid</option>
 														</select>
 													</div>
 

@@ -321,6 +321,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 																	<option value="Petrol">Petrol</option>
 																	<option value="Diesel">Diesel</option>
+																	<option value="Hybrid">Hybrid</option>
 																</select>
 															</div>
 															<label for="saletype" class="col-sm-2 control-label">Select Sale Type<span style="color:red">*</span></label>
