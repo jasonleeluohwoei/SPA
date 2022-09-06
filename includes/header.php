@@ -1,3 +1,46 @@
+<style>
+  /* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
 <header>
   <div class="default-header">
     <div class="container">
@@ -96,7 +139,16 @@
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
           <li><a href="index.php">Home</a></li>
-          <li><a href="car-listing.php">Car Listing</a>
+          <li class = "dropdown">
+            <a class = "dropdown-toggle" data-toggle = "dropdown" href = "#">
+               Car Listing
+            </a>
+            <ul class = "dropdown-menu">
+               <li><a href = "car-listing.php">All Listing</a></li>
+               <li><a href = "car-rent-listing.php">Car For Rent</a></li>
+               <li><a href = "car-sale-listing.php">Car For Sale</a></li>
+            </ul>
+         </li> 
           <li><a href="page.php?type=aboutus">About Us</a></li>
           <!-- <li><a href="page.php?type=faqs">FAQs</a></li> -->
           <li><a href="contact-us.php">Contact Us</a></li>
