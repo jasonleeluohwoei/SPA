@@ -132,13 +132,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 											<div class="form-group">
-												<label class="col-sm-4 control-label">select Page</label>
+												<label class="col-sm-4 control-label">Select Page</label>
 												<div class="col-sm-8">
 															   <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
                   <option value="" selected="selected" class="form-control">***Select One***</option>
-                  <option value="manage-pages.php?type=terms">terms and condition</option>
-                  <option value="manage-pages.php?type=privacy">privacy and policy</option>
-                  <option value="manage-pages.php?type=aboutus">aboutus</option> 
+                  <option value="manage-pages.php?type=terms">Terms and Condition</option>
+                  <option value="manage-pages.php?type=privacy">Privacy and Policy</option>
+                  <option value="manage-pages.php?type=aboutus">About Us</option> 
                   <option value="manage-pages.php?type=faqs">FAQs</option>
                 </select>
 												</div>
@@ -146,7 +146,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 											<div class="hr-dashed"></div>
 											
 											<div class="form-group">
-												<label class="col-sm-4 control-label">selected Page</label>
+												<label class="col-sm-4 control-label">Selected Page</label>
 												<div class="col-sm-8">
 						<?php
 			
