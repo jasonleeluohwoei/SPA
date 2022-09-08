@@ -351,10 +351,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 															<label class="col-sm-2 control-label">Status<span style="color:red">*</span></label>
 															<div class="col-sm-4">
 																<select class="selectpicker" name="vehiclestatus" required>
-																	<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> <?php echo htmlentities($result->VehiclesStatus); ?> </option>
-
-																	<option value="Active">Active</option>
-																	<option value="Inactive">Inactive</option>
+																	<!-- <option value="<php echo htmlentities($result->VehiclesStatus); ?>"> <php echo htmlentities($result->VehiclesStatus); ?> </option> -->
+																	<?php 
+																	if($result->VehiclesStatus =="1"){
+																		echo'<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>';
+																	}else{
+																		echo'<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>';
+																	}
+																	?>
+																	<option value="1">Active</option>
+																	<option value="0">Inactive</option>
 																</select>
 															</div>
 														</div>

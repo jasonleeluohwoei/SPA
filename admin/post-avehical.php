@@ -416,8 +416,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<select class="selectpicker" name="vehiclestatus" required>
 															<option value=""> Select </option>
 
-															<option value="Active">Active</option>
-															<option value="Inactive">Inactive</option>
+															<option value="1">Active</option>
+															<option value="0">Inactive</option>
 														</select>
 													</div>
 												</div>
