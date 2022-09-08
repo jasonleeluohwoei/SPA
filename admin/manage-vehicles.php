@@ -98,10 +98,11 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<th>Sale Price(RM)</th>
 												<th>Fuel Type</th>
 												<th>Model Year</th>
+												<th>Status</th>
 												<th>Action</th>
 											</tr>
 										</thead>
-										<tfoot>
+										<!-- <tfoot>
 											<tr>
 												<th>#</th>
 												<th>Vehicle Title</th>
@@ -111,13 +112,14 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<th>Sale Price(RM)</th>
 												<th>Fuel Type</th>
 												<th>Model Year</th>
+												<th>Status</th>
 												<th>Action</th>
 											</tr>
 											</tr>
-										</tfoot>
+										</tfoot> -->
 										<tbody>
 
-											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerDay,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerDay,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.VehiclesStatus,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -133,7 +135,17 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($result->PriceOfSale); ?></td>
 														<td><?php echo htmlentities($result->FuelType); ?></td>
 														<td><?php echo htmlentities($result->ModelYear); ?></td>
-														<td><a href="edit-vehicle.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+														<td>
+															<?php	
+															if($result->VehiclesStatus=="Active"){
+																echo'<span class="label label-success">Active</span>';
+															}else{
+																echo'<span class="label label-danger">Inactive</span>';
+															}
+															?>															
+														</td>
+														<td>
+															<a href="edit-vehicle.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 															<a href="manage-vehicles.php?del=<?php echo $result->id; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a>
 														</td>
 													</tr>

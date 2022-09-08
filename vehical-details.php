@@ -11,7 +11,7 @@ $useremail=$_SESSION['login'];
 $status=0;
 $vhid=$_GET['vhid'];
 $bookingno=mt_rand(100000000, 999999999);
-$ret="SELECT * FROM tblbooking where (:fromdate BETWEEN date(FromDate) and date(ToDate) || :todate BETWEEN date(FromDate) and date(ToDate) || date(FromDate) BETWEEN :fromdate and :todate) and VehicleId=:vhid";
+$ret="SELECT * FROM tblbooking where (:fromdate BETWEEN date(FromDate) and date(ToDate) || :todate BETWEEN date(FromDate) and date(ToDate) || date(FromDate) BETWEEN :fromdate and :todate) and VehicleId=:vhid and tblvehicles.VehiclesStatus = 'Active'";
 $query1 = $dbh -> prepare($ret);
 $query1->bindParam(':vhid',$vhid, PDO::PARAM_STR);
 $query1->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
@@ -99,7 +99,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 <?php 
 $vhid=intval($_GET['vhid']);
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid";
+$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid and tblvehicles.VehiclesStatus = 'Active'";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':vhid',$vhid, PDO::PARAM_STR);
 $query->execute();
@@ -422,7 +422,7 @@ $_SESSION['brndid']=$result->bid;
       <div class="row">
 <?php 
 $bid=$_SESSION['brndid'];
-$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerDay,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid";
+$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerDay,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid and tblvehicles.VehiclesStatus = 'Active'";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();

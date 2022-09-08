@@ -21,6 +21,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		// $priceperday = $_POST['priceperday'];
 		$priceperweek = $_POST['priceperweek'];
 		$pricepermonth = $_POST['pricepermonth'];
+		$vehiclestatus = $_POST['vehiclestatus'];
 		$vimage1 = $_FILES["img1"]["name"];
 		$vimage2 = $_FILES["img2"]["name"];
 		$vimage3 = $_FILES["img3"]["name"];
@@ -53,10 +54,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
 
 		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerWeek,PricePerMonth,PriceOfCost,
-		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
 		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
 		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
-		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
+		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 
 		$query = $dbh->prepare($sql);
@@ -73,6 +74,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
 		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
 		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
+		$query->bindParam(':vehiclestatus', $vehiclestatus, PDO::PARAM_STR);
 		$query->bindParam(':vimage1', $vimage1, PDO::PARAM_STR);
 		$query->bindParam(':vimage2', $vimage2, PDO::PARAM_STR);
 		$query->bindParam(':vimage3', $vimage3, PDO::PARAM_STR);
@@ -119,6 +121,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$priceofsale = $_POST['priceofsale'];
 		$priceperweek = '0.00';
 		$pricepermonth = '0.00';
+		$vehiclestatus = $_POST['vehiclestatus'];
 		$vimage1 = $_FILES["img1"]["name"];
 		$vimage2 = $_FILES["img2"]["name"];
 		$vimage3 = $_FILES["img3"]["name"];
@@ -151,10 +154,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
 
 		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerWeek,PricePerMonth,PriceOfCost,
-		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
 		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
 		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
-		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
+		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 
 		$query = $dbh->prepare($sql);
@@ -171,6 +174,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
 		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
 		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
+		$query->bindParam(':vehiclestatus', $vehiclestatus, PDO::PARAM_STR);
 		$query->bindParam(':vimage1', $vimage1, PDO::PARAM_STR);
 		$query->bindParam(':vimage2', $vimage2, PDO::PARAM_STR);
 		$query->bindParam(':vimage3', $vimage3, PDO::PARAM_STR);
@@ -405,6 +409,18 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 													Selecttype();
 												</script>
+
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Status<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<select class="selectpicker" name="vehiclestatus" required>
+															<option value=""> Select </option>
+
+															<option value="Active">Active</option>
+															<option value="Inactive">Inactive</option>
+														</select>
+													</div>
+												</div>
 
 												<div class="hr-dashed"></div>
 

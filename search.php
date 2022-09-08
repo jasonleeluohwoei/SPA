@@ -80,7 +80,7 @@ error_reporting(0);
 $searchdata=$_POST['searchdata'];
 $sql = "SELECT tblvehicles.id from tblvehicles 
 join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand 
-where tblvehicles.VehiclesTitle=:search || tblvehicles.FuelType=:search || tblbrands.BrandName=:search || tblvehicles.ModelYear=:search";
+where tblvehicles.VehiclesTitle=:search || tblvehicles.FuelType=:search || tblbrands.BrandName=:search || tblvehicles.ModelYear=:search || tblvehicles.VehiclesStatus = 'Active'";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':search',$searchdata, PDO::PARAM_STR);
 $query->execute();
@@ -94,7 +94,7 @@ $cnt=$query->rowCount();
 <?php 
 $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles 
 join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand 
-where tblvehicles.VehiclesTitle=:search || tblvehicles.FuelType=:search || tblbrands.BrandName=:search || tblvehicles.ModelYear=:search";
+where tblvehicles.VehiclesTitle=:search || tblvehicles.FuelType=:search || tblbrands.BrandName=:search || tblvehicles.ModelYear=:search || tblvehicles.VehiclesStatus = 'Active'";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':search',$searchdata, PDO::PARAM_STR);
 $query->execute();
@@ -169,7 +169,7 @@ foreach($results as $result)
           </div>
           <div class="recent_addedcars">
             <ul>
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand order by id desc limit 4";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesStatus = 'Active' order by id desc limit 4";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

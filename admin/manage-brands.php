@@ -102,7 +102,7 @@ $msg="Page data updated  successfully";
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
+									<!-- <tfoot>
 										<tr>
 										<th>#</th>
 											<th>Brand Name</th>
@@ -112,7 +112,7 @@ $msg="Page data updated  successfully";
 											<th>Action</th>
 										</tr>
 										</tr>
-									</tfoot>
+									</tfoot> -->
 									<tbody>
 
 									<?php $sql = "SELECT * from  tblbrands ";
