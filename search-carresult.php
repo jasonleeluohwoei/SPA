@@ -79,7 +79,7 @@ error_reporting(0);
 //Query for Listing count
 $brand=$_POST['brand'];
 $fueltype=$_POST['fueltype'];
-$sql = "SELECT id from tblvehicles where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype";
+$sql = "SELECT id from tblvehicles where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype and tblvehicles.VehiclesStatus='1'";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':brand',$brand, PDO::PARAM_STR);
 $query -> bindParam(':fueltype',$fueltype, PDO::PARAM_STR);
@@ -93,7 +93,7 @@ $cnt=$query->rowCount();
 
 <?php 
 
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype AND tblvehicles.VehiclesStatus = 'Active'";
+$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype AND tblvehicles.VehiclesStatus = '1'";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':brand',$brand, PDO::PARAM_STR);
 $query -> bindParam(':fueltype',$fueltype, PDO::PARAM_STR);
@@ -169,7 +169,7 @@ foreach($results as $result)
           </div>
           <div class="recent_addedcars">
             <ul>
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand AND tblvehicles.VehiclesStatus = 'Active' order by id desc limit 4";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand AND tblvehicles.VehiclesStatus = '1' order by id desc limit 4";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
