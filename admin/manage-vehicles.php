@@ -137,7 +137,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($result->ModelYear); ?></td>
 														<td>
 															<?php	
-															if($result->VehiclesStatus=="Active"){
+															if($result->VehiclesStatus=="1"){
 																echo'<span class="label label-success">Active</span>';
 															}else{
 																echo'<span class="label label-danger">Inactive</span>';
