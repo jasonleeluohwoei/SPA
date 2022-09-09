@@ -127,7 +127,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<div class="stat-panel-title text-uppercase">Listed Brands</div>
 													</div>
 												</div>
-												<a href="manage-bookings.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+												<a href="manage-brands.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 											</div>
 										</div>
 
