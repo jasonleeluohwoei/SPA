@@ -10,17 +10,17 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
-		$modelyear = $_POST['modelyear'];
-		$seatingcapacity = $_POST['seatingcapacity'];
 		$vehicleplate = $_POST['vehicleplate'];
 		$vehiclemileage = $_POST['vehiclemileage'];
+		$modelyear = $_POST['modelyear'];
+		$seatingcapacity = $_POST['seatingcapacity'];
 		$fueltype = $_POST['fueltype'];
 		$saletype = $_POST['saletype'];
 		$priceofcost = '0.00';
 		$priceofsale = '0.00';
-		$vehiclestatus = $_POST['vehiclestatus'];
 		$priceperweek = $_POST['priceperweek'];
 		$pricepermonth = $_POST['pricepermonth'];
+		$vehiclestatus = $_POST['vehiclestatus'];
 		$airconditioner = $_POST['airconditioner'];
 		$powerdoorlocks = $_POST['powerdoorlocks'];
 		$antilockbrakingsys = $_POST['antilockbrakingsys'];
@@ -36,25 +36,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$id = intval($_GET['id']);
 
 		$sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,
-		VehiclesSaleType=:saletype,PricePerWeek=:priceperweek,PricePerMonth=:pricepermonth,PriceOfCost=:priceofcost,PriceOfSale=:priceofsale,
-		FuelType=:fueltype,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,VehiclesPlate=:vehicleplate,VehiclesMileage=:vehiclemileage,
-		VehiclesStatus=:vehiclestatus,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,
-		BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,
+		VehiclesPlate=:vehicleplate,VehiclesMileage=:vehiclemileage,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,
+		FuelType=:fueltype,VehiclesSaleType=:saletype,PriceOfCost=:priceofcost,PriceOfSale=:priceofsale,
+		PricePerWeek=:priceperweek,PricePerMonth=:pricepermonth,VehiclesStatus=:vehiclestatus,AirConditioner=:airconditioner,
+		PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,
 		PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
 		$query->bindParam(':brand', $brand, PDO::PARAM_STR);
 		$query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
+		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
+		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
+		$query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
+		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
+		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
 		$query->bindParam(':priceperweek', $priceperweek, PDO::PARAM_STR);
 		$query->bindParam(':pricepermonth', $pricepermonth, PDO::PARAM_STR);
 		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
-		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
-		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
-		$query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
-		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
-		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
-		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
+		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);	
 		$query->bindParam(':vehiclestatus', $vehiclestatus, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
@@ -76,10 +76,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$vehicletitle = $_POST['vehicletitle'];
 		$brand = $_POST['brandname'];
 		$vehicleoverview = $_POST['vehicalorcview'];
-		$modelyear = $_POST['modelyear'];
-		$seatingcapacity = $_POST['seatingcapacity'];
 		$vehicleplate = $_POST['vehicleplate'];
 		$vehiclemileage = $_POST['vehiclemileage'];
+		$modelyear = $_POST['modelyear'];
+		$seatingcapacity = $_POST['seatingcapacity'];
 		$fueltype = $_POST['fueltype'];
 		$saletype = $_POST['saletype'];
 		$priceofcost = $_POST['priceofcost'];
@@ -102,25 +102,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$id = intval($_GET['id']);
 
 		$sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,
-		VehiclesSaleType=:saletype,PricePerWeek=:priceperweek,PricePerMonth=:pricepermonth,PriceOfCost=:priceofcost,PriceOfSale=:priceofsale,
-		FuelType=:fueltype,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,VehiclesPlate=:vehicleplate,VehiclesMileage=:vehiclemileage,
-		VehiclesStatus=:vehiclestatus,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,
-		BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,
+		VehiclesPlate=:vehicleplate,VehiclesMileage=:vehiclemileage,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,
+		FuelType=:fueltype,VehiclesSaleType=:saletype,PriceOfCost=:priceofcost,PriceOfSale=:priceofsale,
+		PricePerWeek=:priceperweek,PricePerMonth=:pricepermonth,VehiclesStatus=:vehiclestatus,AirConditioner=:airconditioner,
+		PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,
 		PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vehicletitle', $vehicletitle, PDO::PARAM_STR);
 		$query->bindParam(':brand', $brand, PDO::PARAM_STR);
 		$query->bindParam(':vehicleoverview', $vehicleoverview, PDO::PARAM_STR);
+		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
+		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
+		$query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
+		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
+		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
 		$query->bindParam(':priceperweek', $priceperweek, PDO::PARAM_STR);
 		$query->bindParam(':pricepermonth', $pricepermonth, PDO::PARAM_STR);
 		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
-		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
-		$query->bindParam(':fueltype', $fueltype, PDO::PARAM_STR);
-		$query->bindParam(':modelyear', $modelyear, PDO::PARAM_STR);
-		$query->bindParam(':seatingcapacity', $seatingcapacity, PDO::PARAM_STR);
-		$query->bindParam(':vehicleplate', $vehicleplate, PDO::PARAM_STR);
-		$query->bindParam(':vehiclemileage', $vehiclemileage, PDO::PARAM_STR);
+		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);	
 		$query->bindParam(':vehiclestatus', $vehiclestatus, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
@@ -352,13 +352,19 @@ if (strlen($_SESSION['alogin']) == 0) {
 															<div class="col-sm-4">
 																<select class="selectpicker" name="vehiclestatus" required>
 																	<!-- <option value="<php echo htmlentities($result->VehiclesStatus); ?>"> <php echo htmlentities($result->VehiclesStatus); ?> </option> -->
-																	<?php 
+																	<!-- <php 
 																	if($result->VehiclesStatus =="1"){
-																		echo'<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>';
+																		echo'<option value="<php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>';
 																	}else{
-																		echo'<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>';
+																		echo'<option value="<php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>';
 																	}
+																	?> -->
+																	<?php if ($result->VehiclesStatus == 1) {
 																	?>
+																		<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>
+																	<?php } else { ?>
+																		<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>
+																	<?php } ?>
 																	<option value="1">Active</option>
 																	<option value="0">Inactive</option>
 																</select>
