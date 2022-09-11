@@ -34,7 +34,7 @@ $msg="Profile Updated Successfully";
 <html lang="en">
 <head>
 
-<title>Car Rental Portal | My Profile</title>
+<title>Smart Power Auto | My Profile</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -200,7 +200,7 @@ foreach($results as $result)
 <!-- /Footer--> 
 
 <!--Back to top-->
-<div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
+<div id="back-top" class="back-top" style="padding-bottom:40px"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
 <!--/Back to top--> 
 
 <!--Login-Form -->

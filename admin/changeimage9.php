@@ -7,10 +7,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 } else {
 	// Code for change password	
 	if (isset($_POST['update'])) {
-		$vimage = $_FILES["img4"]["name"];
+		$vimage = $_FILES["img9"]["name"];
 		$id = intval($_GET['imgid']);
-		move_uploaded_file($_FILES["img4"]["tmp_name"], "img/vehicleimages/" . $_FILES["img4"]["name"]);
-		$sql = "update tblvehicles set Vimage4=:vimage where id=:id";
+		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
+		$sql = "update tblvehicles set Vimage9=:vimage where id=:id";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':vimage', $vimage, PDO::PARAM_STR);
 		$query->bindParam(':id', $id, PDO::PARAM_STR);
@@ -32,7 +32,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		<meta name="theme-color" content="#3e454c">
 		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-		<title>Smart Power Auto | Admin Update Image 4</title>
+		<title>Smart Power Auto | Admin Update Image 9</title>
 
 		<!-- Font awesome -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -83,12 +83,12 @@ if (strlen($_SESSION['alogin']) == 0) {
 					<div class="row">
 						<div class="col-md-12">
 
-							<h2 class="page-title">Vehicle Image 4 </h2>
+							<h2 class="page-title">Vehicle Image 9 </h2>
 
 							<div class="row">
 								<div class="col-md-10">
 									<div class="panel panel-default">
-										<div class="panel-heading">Vehicle Image 4 Details</div>
+										<div class="panel-heading">Vehicle Image 9 Details</div>
 										<div class="panel-body">
 											<form method="post" class="form-horizontal" enctype="multipart/form-data">
 
@@ -98,10 +98,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label">Current Image4</label>
+													<label class="col-sm-4 control-label">Current Image9</label>
 													<?php
 													$id = intval($_GET['imgid']);
-													$sql = "SELECT Vimage4 from tblvehicles where tblvehicles.id=:id";
+													$sql = "SELECT Vimage9 from tblvehicles where tblvehicles.id=:id";
 													$query = $dbh->prepare($sql);
 													$query->bindParam(':id', $id, PDO::PARAM_STR);
 													$query->execute();
@@ -111,16 +111,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 														foreach ($results as $result) {	?>
 
 															<div class="col-sm-8">
-																<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage4); ?>" width="300" height="200" style="border:solid 1px #000">
+																<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage9); ?>" width="300" height="200" style="border:solid 1px #000">
 															</div>
 													<?php }
 													} ?>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-4 control-label">Upload New Image 4<span style="color:red">*</span></label>
+													<label class="col-sm-4 control-label">Upload New Image 9<span style="color:red">*</span></label>
 													<div class="col-sm-8">
-														<input type="file" name="img4" required>
+														<input type="file" name="img9" required>
 													</div>
 												</div>
 												<div class="hr-dashed"></div>

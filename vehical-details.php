@@ -11,7 +11,7 @@ $useremail=$_SESSION['login'];
 $status=0;
 $vhid=$_GET['vhid'];
 $bookingno=mt_rand(100000000, 999999999);
-$ret="SELECT * FROM tblbooking where (:fromdate BETWEEN date(FromDate) and date(ToDate) || :todate BETWEEN date(FromDate) and date(ToDate) || date(FromDate) BETWEEN :fromdate and :todate) and VehicleId=:vhid";
+$ret="SELECT * FROM tblbooking where (:fromdate BETWEEN date(FromDate) and date(ToDate) || :todate BETWEEN date(FromDate) and date(ToDate) || date(FromDate) BETWEEN :fromdate and :todate) and VehicleId=:vhid and tblvehicles.VehiclesStatus = '1'";
 $query1 = $dbh -> prepare($ret);
 $query1->bindParam(':vhid',$vhid, PDO::PARAM_STR);
 $query1->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
@@ -50,12 +50,11 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 ?>
 
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
 
-<title>Car Rental | Vehicle Details</title>
+<title>Smart Power Auto | Vehicle Details</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -78,6 +77,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
+
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
@@ -99,7 +99,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 <?php 
 $vhid=intval($_GET['vhid']);
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid";
+$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid and tblvehicles.VehiclesStatus = '1'";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':vhid',$vhid, PDO::PARAM_STR);
 $query->execute();
@@ -117,6 +117,11 @@ $_SESSION['brndid']=$result->bid;
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage2);?>" class="img-responsive" alt="image" width="900" height="560"></div>
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage3);?>" class="img-responsive" alt="image" width="900" height="560"></div>
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage4);?>" class="img-responsive"  alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage5);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage6);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage7);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage8);?>" class="img-responsive"  alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage9);?>" class="img-responsive"  alt="image" width="900" height="560"></div>
   <?php if($result->Vimage5=="")
 {
 
@@ -137,7 +142,15 @@ $_SESSION['brndid']=$result->bid;
       </div>
       <div class="col-md-3">
         <div class="price_info">
-          <p>$<?php echo htmlentities($result->PricePerDay);?> </p>Per Day
+          <?php 
+          if($result->VehiclesSaleType=='Rental'){
+            // echo"<p>$ $result->PricePerDay</p>Per Day";
+            echo"<p style='font-size: 30px; padding-top: 20px;'>RM $result->PricePerWeek</p>Per Week";
+            echo"<p style='font-size: 30px; padding-top: 20px;'>RM $result->PricePerMonth</p>Per Month";
+          }else{
+            echo"<p>RM $result->PriceOfSale</p>To Sale";
+          }
+          ?>
          
         </div>
       </div>
@@ -155,10 +168,26 @@ $_SESSION['brndid']=$result->bid;
               <h5><?php echo htmlentities($result->FuelType);?></h5>
               <p>Fuel Type</p>
             </li>
-       
             <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
               <h5><?php echo htmlentities($result->SeatingCapacity);?></h5>
               <p>Seats</p>
+            </li>
+            <li> <i class="fa fa-car" aria-hidden="true"></i>
+              <h5>
+                <?php
+                  if($result->VehiclesPlate!=""){
+                    echo"$result->VehiclesPlate";
+                  }else{
+                    echo"No Vehicle Plate";
+                  }
+                ?>
+                <!-- <php echo htmlentities($result->VehiclesPlate);?> -->
+              </h5>
+              <p>Vehicle Plate</p>
+            </li>
+            <li> <i class="fa fa-tachometer" aria-hidden="true"></i>
+              <h5><?php echo htmlentities($result->VehiclesMileage);?>/KM</h5>
+              <p>Vehicle Mileage</p>
             </li>
           </ul>
         </div>
@@ -341,7 +370,7 @@ $_SESSION['brndid']=$result->bid;
           <p>Share: <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a> </p>
         </div>
         <div class="sidebar_widget">
-          <div class="widget_heading">
+          <!-- <div class="widget_heading">
             <h5><i class="fa fa-envelope" aria-hidden="true"></i>Book Now</h5>
           </div>
           <form method="post">
@@ -355,17 +384,30 @@ $_SESSION['brndid']=$result->bid;
             </div>
             <div class="form-group">
               <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
-            </div>
-          <?php if($_SESSION['login'])
+            </div> -->
+          <!-- <php if($_SESSION['login'])
               {?>
               <div class="form-group">
                 <input type="submit" class="btn"  name="submit" value="Book Now">
               </div>
-              <?php } else { ?>
+              <php } else { >
 <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login For Book</a>
 
-              <?php } ?>
-          </form>
+              <php } > -->
+
+              <!-- <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script>           -->
+            <!-- </form> -->
+
+            <!-- <a href="https://services.tochat.be/n/60122537316?" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a> -->
+              <!-- <a href="whatsapp://send?text=<php echo urlencode ('http://www.example.com/index.php?route=product/product&product_id=110'); >" data-action="share/whatsapp/share">Share via Whatsapp</a> -->
+              <?php  
+              $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";  
+              $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  
+              // echo "The URL of current page: ".$CurPageURL;  
+              ?>    
+              <a href="https://wa.me/60122537316?text=<?php echo "I'm interested to know more information about this car: ".$CurPageURL ; ?>" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a>
+
+            <!-- <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script> -->
         </div>
       </aside>
       <!--/Side-Bar--> 
@@ -380,7 +422,7 @@ $_SESSION['brndid']=$result->bid;
       <div class="row">
 <?php 
 $bid=$_SESSION['brndid'];
-$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid";
+$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerDay,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid and tblvehicles.VehiclesStatus = '1'";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
@@ -392,15 +434,22 @@ foreach($results as $result)
 { ?>      
         <div class="col-md-3 grid_listing">
           <div class="product-listing-m gray-bg">
-            <div class="product-listing-img"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" /> </a>
+            <div class="product-listing-img"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" style="height:175px;"/> </a>
             </div>
             <div class="product-listing-content">
-              <h5><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
-              <p class="list-price">$<?php echo htmlentities($result->PricePerDay);?></p>
-          
-              <ul class="features_list">
+              <h5 style="height:55px;"><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
+              <p class="list-price">
+                <?php 
+                if($result->VehiclesSaleType=='Rental'){
+                  echo "RM $result->PricePerDay <sub>Per Day</sub>";
+                }else{
+                  echo "RM $result->PriceOfSale <sub>For Sale</sub>";
+                }
+                ?>
+              </p>
                 
-             <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity);?> seats</li>
+              <ul class="features_list"> 
+                <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity);?> seats</li>
                 <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->ModelYear);?> model</li>
                 <li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->FuelType);?></li>
               </ul>
@@ -422,7 +471,7 @@ foreach($results as $result)
 <!-- /Footer--> 
 
 <!--Back to top-->
-<div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
+<div id="back-top" class="back-top" style="padding-bottom:40px"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
 <!--/Back to top--> 
 
 <!--Login-Form -->

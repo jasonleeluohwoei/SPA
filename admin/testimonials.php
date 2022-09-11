@@ -48,8 +48,9 @@ $msg="Testimonial Successfully Active";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	
-	<title>Car Rental Portal |Admin Manage testimonials   </title>
+	<title>Smart Power Auto |Admin Manage testimonials   </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">

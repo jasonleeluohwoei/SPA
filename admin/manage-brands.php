@@ -32,8 +32,9 @@ $msg="Page data updated  successfully";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	
-	<title>Car Rental Portal |Admin Manage Brands   </title>
+	<title>Smart Power Auto |Admin Manage Brands   </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -102,7 +103,7 @@ $msg="Page data updated  successfully";
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
+									<!-- <tfoot>
 										<tr>
 										<th>#</th>
 											<th>Brand Name</th>
@@ -112,7 +113,7 @@ $msg="Page data updated  successfully";
 											<th>Action</th>
 										</tr>
 										</tr>
-									</tfoot>
+									</tfoot> -->
 									<tbody>
 
 									<?php $sql = "SELECT * from  tblbrands ";

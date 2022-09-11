@@ -8,7 +8,7 @@ error_reporting(0);
 <html lang="en">
 <head>
 
-<title>Smart Power Auto | Car Listing</title>
+<title>Smart Power Auto | Car Listing For Rent</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -88,7 +88,7 @@ $cnt=$query->rowCount();
 </div>
 </div>
 
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesStatus = '1'";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesSaleType='Rental' AND tblvehicles.VehiclesStatus = '1'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -167,11 +167,11 @@ foreach($results as $result)
 
         <div class="sidebar_widget">
           <div class="widget_heading">
-            <h5><i class="fa fa-car" aria-hidden="true"></i> Recently Listed Cars</h5>
+            <h5><i class="fa fa-car" aria-hidden="true"></i> Recently Rental Cars</h5>
           </div>
           <div class="recent_addedcars">
             <ul>
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesStatus = '1' order by id desc limit 4";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesSaleType = 'Rental' AND tblvehicles.VehiclesStatus = '1' order by id desc limit 4";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

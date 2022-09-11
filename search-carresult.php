@@ -8,7 +8,7 @@ error_reporting(0);
 <html lang="en">
 <head>
 
-<title>Car Rental Portal | Car Listing</title>
+<title>Smart Power Auto | Car Listing</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -79,7 +79,7 @@ error_reporting(0);
 //Query for Listing count
 $brand=$_POST['brand'];
 $fueltype=$_POST['fueltype'];
-$sql = "SELECT id from tblvehicles where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype";
+$sql = "SELECT id from tblvehicles where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype and tblvehicles.VehiclesStatus='1'";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':brand',$brand, PDO::PARAM_STR);
 $query -> bindParam(':fueltype',$fueltype, PDO::PARAM_STR);
@@ -93,7 +93,7 @@ $cnt=$query->rowCount();
 
 <?php 
 
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype";
+$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:brand and tblvehicles.FuelType=:fueltype AND tblvehicles.VehiclesStatus = '1'";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':brand',$brand, PDO::PARAM_STR);
 $query -> bindParam(':fueltype',$fueltype, PDO::PARAM_STR);
@@ -130,7 +130,7 @@ foreach($results as $result)
           <div class="sidebar_filter">
             <form action="#" method="get">
               <div class="form-group select">
-                <select class="form-control">
+                <select class="form-control" required>
                   <option>Select Brand</option>
 
                   <?php $sql = "SELECT * from  tblbrands ";
@@ -148,7 +148,7 @@ foreach($results as $result)
                 </select>
               </div>
               <div class="form-group select">
-                <select class="form-control">
+                <select class="form-control" required>
                   <option>Select Fuel Type</option>
 <option value="Petrol">Petrol</option>
 <option value="Diesel">Diesel</option>
@@ -169,7 +169,7 @@ foreach($results as $result)
           </div>
           <div class="recent_addedcars">
             <ul>
-<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand order by id desc limit 4";
+<?php $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand AND tblvehicles.VehiclesStatus = '1' order by id desc limit 4";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -202,7 +202,7 @@ foreach($results as $result)
 <!-- /Footer--> 
 
 <!--Back to top-->
-<div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
+<div id="back-top" class="back-top" style="padding-bottom:40px"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
 <!--/Back to top--> 
 
 <!--Login-Form -->

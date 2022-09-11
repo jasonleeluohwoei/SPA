@@ -2,7 +2,6 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
-
 ?>
 
 <!DOCTYPE HTML>
@@ -10,7 +9,7 @@ error_reporting(0);
 
 <head>
 
-  <title>Car Rental Portal</title>
+  <title>Smart Power Auto </title>
   <!--Bootstrap -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="assets/css/style.css" type="text/css">
@@ -19,13 +18,16 @@ error_reporting(0);
   <link href="assets/css/slick.css" rel="stylesheet">
   <link href="assets/css/bootstrap-slider.min.css" rel="stylesheet">
   <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
   <link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
-  <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
+  <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" />
   <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/orange.css" title="orange" media="all" />
-  <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/blue.css" title="blue" media="all" />
+  <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/blue.css" title="blue" media="all" data-default-color="true" />
   <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
   <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
   <link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
+
+  
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/SmartPowerAuto.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/SmartPowerAuto.html">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/SmartPowerAuto.png">
@@ -58,12 +60,11 @@ error_reporting(0);
           <div class="col-md-5 col-md-push-7">
             <div class="banner_content">
               <h1>&nbsp;</h1>
-              <p>&nbsp; </p>
+              <p>&nbsp;</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
   <!-- /Banners -->
 
@@ -72,22 +73,24 @@ error_reporting(0);
   <section class="section-padding gray-bg">
     <div class="container">
       <div class="section-header text-center">
-        <h2>Find the Best <span>CarForYou</span></h2>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+        <h2>Find your desired <span>CarForYou</span></h2>
+        <p>We just launched a new division of our company called Automobile Trade for Cash, which focuses on car purchase, trade-in, and consignment, in an attempt to better serve our customers. It is intended to give a fast, clever, and simple solution to sell your automobile. It also offers improved selling chances and piece of mind that you will get your money quickly.</p>
       </div>
       <div class="row">
 
         <!-- Nav tabs -->
-        <div class="recent-tab">
+        <!-- <div class="recent-tab">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#resentnewcar" role="tab" data-toggle="tab">New Car</a></li>
           </ul>
-        </div>
+        </div> -->
         <!-- Recently Listed New Cars -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-            <?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand limit 9";
+            <?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerWeek,tblvehicles.PriceOfSale,tblvehicles.VehiclesSaleType,
+            tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1,tblvehicles.VehiclesStatus
+            from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand WHERE tblvehicles.VehiclesStatus = '1' limit 9";
             $query = $dbh->prepare($sql);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -98,16 +101,27 @@ error_reporting(0);
 
                 <div class="col-list-3">
                   <div class="recent-car-list">
-                    <div class="car-info-box"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1); ?>" class="img-responsive" alt="image"></a>
+                    <div class="car-info-box"> 
+                      <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1); ?>" class="img-responsive" alt="image" style="height:238px;"></a>
                       <ul>
                         <li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->FuelType); ?></li>
                         <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->ModelYear); ?> Model</li>
                         <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity); ?> seats</li>
                       </ul>
                     </div>
+
                     <div class="car-title-m">
-                      <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"> <?php echo htmlentities($result->VehiclesTitle); ?></a></h6>
-                      <span class="price">$<?php echo htmlentities($result->PricePerDay); ?> /Day</span>
+                      <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id); ?>"> <?php echo htmlentities($result->VehiclesTitle); ?></a></h6><br><br>
+
+                      <p class="price" style="margin-right:200px;">
+                        <?php 
+                          if($result->VehiclesSaleType=='Rental'){
+                            echo "RM $result->PricePerWeek Per Week";
+                          }else{
+                            echo "RM $result->PriceOfSale For Sale";
+                          }
+                        ?>
+                      </p>
                     </div>
                     <div class="inventory_info_m">
                       <p><?php echo substr($result->VehiclesOverview, 0, 70); ?></p>
@@ -168,7 +182,7 @@ error_reporting(0);
 
 
   <!--Testimonial -->
-  <section class="section-padding testimonial-section parallex-bg">
+  <!-- <section class="section-padding testimonial-section parallex-bg">
     <div class="container div_zindex">
       <div class="section-header white-text text-center">
         <h2>Our Satisfied <span>Customers</span></h2>
@@ -176,37 +190,41 @@ error_reporting(0);
       <div class="row">
         <div id="testimonial-slider">
           <?php
-          $tid = 1;
-          $sql = "SELECT tbltestimonial.Testimonial,tblusers.FullName from tbltestimonial join tblusers on tbltestimonial.UserEmail=tblusers.EmailId where tbltestimonial.status=:tid limit 4";
-          $query = $dbh->prepare($sql);
-          $query->bindParam(':tid', $tid, PDO::PARAM_STR);
-          $query->execute();
-          $results = $query->fetchAll(PDO::FETCH_OBJ);
-          $cnt = 1;
-          if ($query->rowCount() > 0) {
-            foreach ($results as $result) {  ?>
+          // $tid = 1;
+          // $sql = "SELECT tbltestimonial.Testimonial,tblusers.FullName from tbltestimonial join tblusers on tbltestimonial.UserEmail=tblusers.EmailId where tbltestimonial.status=:tid limit 4";
+          // $query = $dbh->prepare($sql);
+          // $query->bindParam(':tid', $tid, PDO::PARAM_STR);
+          // $query->execute();
+          // $results = $query->fetchAll(PDO::FETCH_OBJ);
+          // $cnt = 1;
+          // if ($query->rowCount() > 0) {
+          //   foreach ($results as $result) {  
+          ?>
 
 
               <div class="testimonial-m">
 
                 <div class="testimonial-content">
                   <div class="testimonial-heading">
-                    <h5><?php echo htmlentities($result->FullName); ?></h5>
-                    <p><?php echo htmlentities($result->Testimonial); ?></p>
+                    <h5><?php //echo htmlentities($result->FullName); 
+                        ?></h5>
+                    <p><?php //echo htmlentities($result->Testimonial); 
+                        ?></p>
                   </div>
                 </div>
               </div>
-          <?php }
-          } ?>
+          <?php //}
+          //  } 
+          ?>
 
 
 
         </div>
       </div>
     </div>
-    <!-- Dark Overlay-->
-    <div class="dark-overlay"></div>
-  </section>
+    <! Dark Overlay-->
+  <!-- <div class="dark-overlay"></div>
+  </section>  -->
   <!-- /Testimonial-->
 
 
@@ -215,7 +233,7 @@ error_reporting(0);
   <!-- /Footer-->
 
   <!--Back to top-->
-  <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
+  <div id="back-top" class="back-top" style="padding-bottom:40px"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
   <!--/Back to top-->
 
   <!--Login-Form -->
