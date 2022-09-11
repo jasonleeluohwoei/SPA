@@ -33,6 +33,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 	<title>Smart Power Auto | Admin Login</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
