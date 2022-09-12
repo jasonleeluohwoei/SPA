@@ -78,12 +78,18 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+ <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/SmartPowerAuto.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/SmartPowerAuto.html">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/SmartPowerAuto.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/SmartPowerAuto.png">
+  <link rel="shortcut icon" href="assets/images/favicon-icon/SPA.png">
+  <!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png"> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 </head>
 <body>
 
@@ -405,7 +411,7 @@ $_SESSION['brndid']=$result->bid;
               $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  
               // echo "The URL of current page: ".$CurPageURL;  
               ?>    
-              <a href="https://wa.me/60122537316?text=<?php echo "I'm interested to know more information about this car: ".$CurPageURL ; ?>" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a>
+              <a href="https://wa.me/60123160808?text=<?php echo "I'm interested to know more information about this car: ".$CurPageURL ; ?>" style="display: table; font-family: sans-serif; text-decoration: none; margin: 1em auto; color: #fff; font-size: 0.9em; padding: 1em 2em 1em 3.5em; border-radius: 2em; font-weight: bold; background: #25d366 url('https://tochat.be/click-to-chat-directory/css/whatsapp.svg') no-repeat 1.5em center; background-size: 1.6em;">Contact On WhatsApp</a>
 
             <!-- <script defer src="https://widget.tochat.be/bundle.js?key=76872d3b-f925-4359-b7c1-5f94ef9dbe95"></script> -->
         </div>
