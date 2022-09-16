@@ -15,7 +15,6 @@
 				<ul>
 					<li><a href="post-avehical.php">Post a Vehicle</a></li>
 					<li><a href="manage-vehicles.php">Manage Vehicles</a></li>
-					<li><a href="manage-additional-cost.php">Manage Additional Cost</a></li>
 				</ul>
 			</li>
 
