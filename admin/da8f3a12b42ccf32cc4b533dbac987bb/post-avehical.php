@@ -350,21 +350,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 														</select>
 													</div>
 
-													<label class="col-sm-2 control-label">Status<span style="color:red">*</span></label>
-													<div class="col-sm-4">
-														<select class="selectpicker" name="vehiclestatus" required>
-															<option value=""> Select </option>
-
-															<option value="1">Active</option>
-															<option value="0">Inactive</option>
-														</select>
-													</div>
-												</div>
-
-												<div class="hr-dashed"></div>
-												<h4><b>Price Info</b></h4>
-
-												<div class="form-group">
 													<label for="saletype" class="col-sm-2 control-label">Select Sale Type<span style="color:red">*</span></label>
 													<div class="col-sm-4">
 														<select id="saletype" class="selectpicker" name="saletype" onchange="Selecttype(this.value);" required>
@@ -391,84 +376,52 @@ if (strlen($_SESSION['alogin']) == 0) {
 												</div>
 
 												<div id="salebox" class="form-group">
+													<!-- <label class="col-sm-2 control-label">Price of Cost (RM)<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<input id="priceofcost" type="text" name="priceofcost" class="form-control">
+													</div> -->
 													<label class="col-sm-2 control-label">Price of Sale (RM)<span style="color:red">*</span></label>
 													<div class="col-sm-4">
 														<input id="priceofsale" type="text" name="priceofsale" class="form-control">
 													</div>
-													<label class="col-sm-2 control-label">Price of Cost (RM)<span style="color:red">*</span></label>
-													<div class="col-sm-4">
-														<input id="priceofcost" type="text" name="priceofcost" class="form-control">
-													</div>
 												</div>
-												<!-- <div id="salebox1" class="form-group">
-													<label class="col-sm-2 control-label">Total Additional Cost (RM)</label>
-													<div class="col-sm-4">
-														<input id="totaladditionalcost" type="text" name="totaladditionalcost" class="form-control" readonly>
-													</div>
-													<label class="col-sm-2 control-label">Total Price of Cost (RM)</label>
-													<div class="col-sm-4">
-														<input id="totalpriceofcost" type="text" name="totalpriceofcost" class="form-control" readonly>
-													</div>
-												</div> -->
-
 												<script>
 													function Selecttype() {
 														var d = document.getElementById("saletype").value;
 														var rental = document.getElementById("rentalbox");
 														var sale = document.getElementById("salebox");
-														// var sale1 = document.getElementById("salebox1");
+														// var ppday = document.getElementById("priceperday");
+														// var pcost = document.getElementById("priceofcost");
+														// var psale = document.getElementById("priceofsale");
 														if (d == "Rental") {
 															rental.style.display = "block";
 															sale.style.display = "none";
-															// sale1.style.display = "none";
+															// ppday.attributes = "required";
 														} else if (d == "Sale") {
 															rental.style.display = "none";
 															sale.style.display = "block";
-															// sale1.style.display = "block";
+															// pcost.attributes = "required";
+															// psale.attributes = "required";
 														} else if (d == "Select") {
 															rental.style.display = "none";
 															sale.style.display = "none";
-															// sale1.style.display = "none";
 														}
 													}
 
 													Selecttype();
 												</script>
-												<br><br>
 
-												<!-- <table class="table" id="additionalTable">
-													<thead>
-														<tr>
-															<th style="width:40%;">Description</th>
-															<th style="width:20%;">Cost (RM)</th>
-															<th style="width:20%;">Date</th>
-															<th style="width:20%;"></th>
-														</tr>
-													</thead>
-													<tbody>
-														<td id="col0">
-															<div class="form-group">
-															<input type="text" name="description[]" value="" class="form-control" style="width:600px;" />
-															</div>
-														</td>
-														<td id="col1">
-															<div class="form-group">
-															<input type="text" name="cost[]" value="" class="form-control" style="width:300px;"/>
-															</div>
-														</td>
-														<td id="col2">
-															<div class="form-group">
-															<input type="date" name="date[]" value="" class="form-control" style="width:300px;"/>
-															</div>
-														</td>
-													</tbody>
-													
-												</table> -->
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Status<span style="color:red">*</span></label>
+													<div class="col-sm-4">
+														<select class="selectpicker" name="vehiclestatus" required>
+															<option value=""> Select </option>
 
-												<script>
-													
-												</script>
-												<br><br>
+															<option value="1">Active</option>
+															<option value="0">Inactive</option>
+														</select>
+													</div>
+												</div>
 
 												<div class="hr-dashed"></div>
 

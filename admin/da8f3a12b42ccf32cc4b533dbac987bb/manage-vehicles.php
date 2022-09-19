@@ -93,8 +93,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<tr>
 												<th>#</th>
 												<th>Vehicle Title</th>
-												<th>Brand</th>
-												<th>Vehicle Plate</th>
+												<th>Brand </th>
 												<th>Sale Type</th>
 												<th>Rental Price(RM)</th>
 												<th>Sale Price(RM)</th>
@@ -121,7 +120,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 										</tfoot> -->
 										<tbody>
 
-											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesPlate,tblvehicles.VehiclesSaleType,tblvehicles.PricePerMonth,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.VehiclesStatus,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerMonth,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.VehiclesStatus,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -132,15 +131,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($cnt); ?></td>
 														<td><?php echo htmlentities($result->VehiclesTitle); ?></td>
 														<td><?php echo htmlentities($result->BrandName); ?></td>
-														<td>
-															<?php 
-															if($result->VehiclesPlate!=""){
-																echo htmlentities($result->VehiclesPlate); 
-															}else{
-																echo "-";
-															}
-															?>
-														</td>
 														<td><?php echo htmlentities($result->VehiclesSaleType); ?></td>
 														<td><?php echo htmlentities($result->PricePerMonth); ?></td>
 														<td><?php echo htmlentities($result->PriceOfSale); ?></td>

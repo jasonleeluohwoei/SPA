@@ -8,11 +8,11 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 	if (isset($_REQUEST['del'])) {
 		$delid = intval($_GET['del']);
-		$sql = "delete from tblvehicles  WHERE  id=:delid";
+		$sql = "delete from tbladditionalcost  WHERE  id=:delid";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':delid', $delid, PDO::PARAM_STR);
 		$query->execute();
-		$msg = "Vehicle  record deleted successfully";
+		$msg = "Additional Cost record deleted successfully";
 	}
 
 
@@ -30,7 +30,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		<meta name="theme-color" content="#3e454c">
 		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-		<title>Smart Power Auto |Admin Manage Vehicles </title>
+		<title>Smart Power Auto |Admin Manage Additional Cost </title>
 
 		<!-- Font awesome -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -81,47 +81,32 @@ if (strlen($_SESSION['alogin']) == 0) {
 					<div class="row">
 						<div class="col-md-12">
 
-							<h2 class="page-title">Manage Vehicles</h2>
+							<h2 class="page-title">Manage Additional Cost</h2>
 
 							<!-- Zero Configuration Table -->
 							<div class="panel panel-default">
-								<div class="panel-heading">Vehicle Details</div>
+								<div class="panel-heading">Additional Cost Details</div>
 								<div class="panel-body">
+                                    <button onclick="window.location='add-additional-cost.php';" type="button" class="btn btn-success" style="float:right;">Add New Cost</button><br><br><br>
 									<?php if ($error) { ?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($msg) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
 									<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 										<thead>
 											<tr>
 												<th>#</th>
 												<th>Vehicle Title</th>
-												<th>Brand</th>
-												<th>Vehicle Plate</th>
-												<th>Sale Type</th>
-												<th>Rental Price(RM)</th>
-												<th>Sale Price(RM)</th>
-												<th>Fuel Type</th>
-												<th>Model Year</th>
-												<th>Status</th>
+												<th>Brand </th>
+												<th>Vehicle Plate </th>
+												<!-- <th>Sale Price(RM)</th>
+												<th>Cost Price(RM)</th> -->
+												<th>Additional Cost(RM)</th>
+												<!-- <th>Status</th> -->
 												<th>Action</th>
 											</tr>
 										</thead>
-										<!-- <tfoot>
-											<tr>
-												<th>#</th>
-												<th>Vehicle Title</th>
-												<th>Brand </th>
-												<th>Sale Type</th>
-												<th>Rental Price(RM)</th>
-												<th>Sale Price(RM)</th>
-												<th>Fuel Type</th>
-												<th>Model Year</th>
-												<th>Status</th>
-												<th>Action</th>
-											</tr>
-											</tr>
-										</tfoot> -->
+									
 										<tbody>
 
-											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesPlate,tblvehicles.VehiclesSaleType,tblvehicles.PricePerMonth,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.VehiclesStatus,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+											<?php $sql = "select tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid, IFNULL(c.TotalAdditionalCost , 0.00) as TotalAdditionalCost FROM tblvehicles LEFT JOIN tblbrands on tblbrands.id=tblvehicles.VehiclesBrand LEFT JOIN ( select VehicleID as VID, SUM(AdditionalCost) as TotalAdditionalCost from tbladditionalcost GROUP BY VehicleID) c ON (tblvehicles.id = c.VID) order by tblvehicles.id;";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -132,32 +117,28 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($cnt); ?></td>
 														<td><?php echo htmlentities($result->VehiclesTitle); ?></td>
 														<td><?php echo htmlentities($result->BrandName); ?></td>
-														<td>
-															<?php 
+														<td><?php 
 															if($result->VehiclesPlate!=""){
 																echo htmlentities($result->VehiclesPlate); 
 															}else{
 																echo "-";
-															}
-															?>
+															}?>
 														</td>
-														<td><?php echo htmlentities($result->VehiclesSaleType); ?></td>
-														<td><?php echo htmlentities($result->PricePerMonth); ?></td>
-														<td><?php echo htmlentities($result->PriceOfSale); ?></td>
-														<td><?php echo htmlentities($result->FuelType); ?></td>
-														<td><?php echo htmlentities($result->ModelYear); ?></td>
-														<td>
-															<?php	
+														<!-- <td><php echo htmlentities($result->PriceOfSale); ?></td>
+                                                        <td><php echo htmlentities($result->PriceOfCost); ?></td> -->
+                                                        <td><?php echo htmlentities($result->TotalAdditionalCost); ?></td>
+														<!-- <td>
+															<php	
 															if($result->VehiclesStatus=="1"){
 																echo'<span class="label label-success">Active</span>';
 															}else{
 																echo'<span class="label label-danger">Inactive</span>';
 															}
 															?>															
-														</td>
+														</td> -->
 														<td>
-															<a href="edit-vehicle.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-															<a href="manage-vehicles.php?del=<?php echo $result->id; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a>
+															<a href="manage-additional-details.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+															<!-- <a href="manage-additional-cost.php?del=<php echo $result->id; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a> -->
 														</td>
 													</tr>
 											<?php $cnt = $cnt + 1;
