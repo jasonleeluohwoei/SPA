@@ -106,7 +106,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 $ret = "SELECT tblvehicles.VehiclesTitle,tbladditionalcost.VehicleID,tbladditionalcost.id,
                                                 tbladditionalcost.Description,tbladditionalcost.AdditionalCost,tbladditionalcost.Date
                                                 from tblvehicles join tbladditionalcost on tbladditionalcost.VehicleID=tblvehicles.id
-                                                 where tbladditionalcost.id=:id";
+                                                where tbladditionalcost.id=:id";
                                                 $query = $dbh->prepare($ret);
                                                 $query->bindParam(':id', $id, PDO::PARAM_STR);
                                                 $query->execute();
@@ -119,9 +119,10 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Vehicle Title</label>
                                                             <div class="col-sm-8">
-                                                                <select class="selectpicker" name="vehicle" id="vehicle" required>
-                                                                    <option value="<?php echo htmlentities($result->VehicleID); ?>"><?php echo htmlentities($vtname = $result->VehiclesTitle); ?> </option>
-                                                                    <?php $ret = "select id,VehiclesTitle from tblvehicles";
+                                                                <input type="text" class="form-control" value="<?php echo htmlentities($result->VehiclesTitle); ?>" name="VehiclesTitle" id="additionalcost" readonly>
+                                                                <!-- <select class="selectpicker" name="vehicle" id="vehicle" required>
+                                                                    <option value="<php echo htmlentities($result->VehicleID); ?>"><php echo htmlentities($vtname = $result->VehiclesTitle); ?> </option>
+                                                                    <php $ret = "select id,VehiclesTitle from tblvehicles";
                                                                     $query = $dbh->prepare($ret);
                                                                     //$query->bindParam(':id',$id, PDO::PARAM_STR);
                                                                     $query->execute();
@@ -132,12 +133,12 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                                                 continue;
                                                                             } else {
                                                                     ?>
-                                                                                <option value="<?php echo htmlentities($results->id); ?>"><?php echo htmlentities($results->VehiclesTitle); ?></option>
-                                                                    <?php }
+                                                                                <option value="<php echo htmlentities($results->id); ?>"><php echo htmlentities($results->VehiclesTitle); ?></option>
+                                                                    <php }
                                                                         }
-                                                                    } ?>
+                                                                    } >
 
-                                                                </select>
+                                                                </select> -->
                                                             </div>
                                                         </div>
 
@@ -169,8 +170,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                 <div class="form-group">
                                                     <div class="col-sm-8 col-sm-offset-4">
-
                                                         <button class="btn btn-primary" name="submit" type="submit">Submit</button>
+                                                        <button class="btn btn-primary" name="edit" type="button" onclick="back()">Back to previous page</button>
                                                     </div>
                                                 </div>
 
@@ -202,6 +203,11 @@ if (strlen($_SESSION['alogin']) == 0) {
         <script src="js/fileinput.js"></script>
         <script src="js/chartData.js"></script>
         <script src="js/main.js"></script>
+        <script>
+            var back = function() {
+                history.back();
+            };
+        </script>
 
     </body>
 

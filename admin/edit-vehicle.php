@@ -352,30 +352,32 @@ if (strlen($_SESSION['alogin']) == 0) {
 															<div class="col-sm-4">
 																<input id="totaladditionalcost" type="text" name="totaladditionalcost" class="form-control" value="<?php echo htmlentities($result->TotalAdditionalCost); ?>" readonly>
 															</div>
-															<label class="col-sm-2 control-label">Total Price of Cost (RM)</label>
-															<div class="col-sm-4">
-																<input id="totalpriceofcost" type="text" name="totalpriceofcost" class="form-control" value="<?php echo htmlentities(number_format((float)$result->PriceOfCost + $result->TotalAdditionalCost, 2, '.', '')); ?>" readonly>
+															<div id="tpoc">
+																<label class="col-sm-2 control-label">Total Price of Cost (RM)</label>
+																<div class="col-sm-4">
+																	<input id="totalpriceofcost" type="text" name="totalpriceofcost" class="form-control" value="<?php echo htmlentities(number_format((float)$result->PriceOfCost + $result->TotalAdditionalCost, 2, '.', '')); ?>" readonly>
+																</div>
 															</div>
 														</div>
-														
+
 														<script>
 															function Selecttype() {
 																var d = document.getElementById("saletype").value;
 																var rental = document.getElementById("rentalbox");
 																var sale = document.getElementById("salebox");
-																// var sale1 = document.getElementById("salebox1");
+																var tpoc = document.getElementById("tpoc");
 																if (d == "Rental") {
 																	rental.style.display = "block";
 																	sale.style.display = "none";
-																	// sale1.style.display = "none";
+																	tpoc.style.display = "none";
 																} else if (d == "Sale") {
 																	rental.style.display = "none";
 																	sale.style.display = "block";
-																	// sale1.style.display = "block";
+																	tpoc.style.display = "block";
 																} else if (d == "Select") {
 																	rental.style.display = "none";
 																	sale.style.display = "none";
-																	// sale1.style.display = "none";
+																	tpoc.style.display = "none";
 																}
 															}
 

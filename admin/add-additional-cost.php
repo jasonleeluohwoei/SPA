@@ -152,6 +152,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     <div class="col-sm-8 col-sm-offset-4">
 
                                                         <button class="btn btn-primary" name="submit" type="submit">Submit</button>
+                                                        <button class="btn btn-primary" name="edit" type="button" onclick="back()">Back to previous page</button>
                                                     </div>
                                                 </div>
 
@@ -183,6 +184,11 @@ if (strlen($_SESSION['alogin']) == 0) {
         <script src="js/fileinput.js"></script>
         <script src="js/chartData.js"></script>
         <script src="js/main.js"></script>
+        <script>
+			var back = function() {
+				history.back();
+			};
+		</script>
 
     </body>
 

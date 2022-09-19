@@ -95,8 +95,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<th>#</th>
 												<th>Vehicle Title</th>
 												<th>Brand </th>
-												<th>Sale Price(RM)</th>
-												<th>Cost Price(RM)</th>
+												<th>Vehicle Plate </th>
+												<!-- <th>Sale Price(RM)</th>
+												<th>Cost Price(RM)</th> -->
 												<th>Additional Cost(RM)</th>
 												<!-- <th>Status</th> -->
 												<th>Action</th>
@@ -105,7 +106,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 									
 										<tbody>
 
-											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName, tblvehicles.VehiclesSaleType,tblvehicles.PriceOfCost,tblvehicles.PriceOfSale, tblvehicles.VehiclesStatus, tbladditionalcost.AdditionalCost, tbladditionalcost.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand join tbladditionalcost on tbladditionalcost.VehicleID=tblvehicles.id where tblvehicles.VehiclesSaleType = 'Sale'";
+											<?php $sql = "select tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid, IFNULL(c.TotalAdditionalCost , 0.00) as TotalAdditionalCost FROM tblvehicles LEFT JOIN tblbrands on tblbrands.id=tblvehicles.VehiclesBrand LEFT JOIN ( select VehicleID as VID, SUM(AdditionalCost) as TotalAdditionalCost from tbladditionalcost GROUP BY VehicleID) c ON (tblvehicles.id = c.VID) order by tblvehicles.id;";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -116,9 +117,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($cnt); ?></td>
 														<td><?php echo htmlentities($result->VehiclesTitle); ?></td>
 														<td><?php echo htmlentities($result->BrandName); ?></td>
-														<td><?php echo htmlentities($result->PriceOfSale); ?></td>
-                                                        <td><?php echo htmlentities($result->PriceOfCost); ?></td>
-                                                        <td><?php echo htmlentities($result->AdditionalCost); ?></td>
+														<td><?php 
+															if($result->VehiclesPlate!=""){
+																echo htmlentities($result->VehiclesPlate); 
+															}else{
+																echo "-";
+															}?>
+														</td>
+														<!-- <td><php echo htmlentities($result->PriceOfSale); ?></td>
+                                                        <td><php echo htmlentities($result->PriceOfCost); ?></td> -->
+                                                        <td><?php echo htmlentities($result->TotalAdditionalCost); ?></td>
 														<!-- <td>
 															<php	
 															if($result->VehiclesStatus=="1"){
@@ -129,8 +137,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 															?>															
 														</td> -->
 														<td>
-															<a href="edit-additional-cost.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-															<a href="manage-additional-cost.php?del=<?php echo $result->id; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a>
+															<a href="manage-additional-details.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+															<!-- <a href="manage-additional-cost.php?del=<php echo $result->id; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a> -->
 														</td>
 													</tr>
 											<?php $cnt = $cnt + 1;
