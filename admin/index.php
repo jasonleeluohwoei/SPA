@@ -11,18 +11,16 @@ $query-> bindParam(':email', $email, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
 $query-> execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
-
 if($query->rowCount() > 0)
 {
-	if($_SESSION['alogin']=$_POST['username']=='admin'){
-			echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
-	}else if($_SESSION['alogin'] = $_POST['username'] == 'superadmin'){
-			echo "<script type='text/javascript'> document.location = 'da8f3a12b42ccf32cc4b533dbac987bb/post-avehical.php'</script>";
-	}
+$_SESSION['alogin']=$_POST['username'];
+echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
 } else{
+  
   echo "<script>alert('Invalid Details');</script>";
 
 }
+
 }
 
 ?>
