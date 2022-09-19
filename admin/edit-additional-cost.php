@@ -7,15 +7,15 @@ if (strlen($_SESSION['alogin']) == 0) {
 } else {
     // Code for change password	
     if (isset($_POST['submit'])) {
-        $vehicle = $_POST['vehicle'];
+        // $vehicle = $_POST['vehicle'];
         $description = $_POST['description'];
         $additionalcost = $_POST['additionalcost'];
         $date = $_POST['date'];
         $id = $_GET['id'];
-        $sql = "update tbladditionalcost set VehicleID=:vehicle, 
+        $sql = "update tbladditionalcost set
         Description=:description, AdditionalCost=:additionalcost, Date=:date where id=:id";
         $query = $dbh->prepare($sql);
-        $query->bindParam(':vehicle', $vehicle, PDO::PARAM_STR);
+        // $query->bindParam(':vehicle', $vehicle, PDO::PARAM_STR);
         $query->bindParam(':description', $description, PDO::PARAM_STR);
         $query->bindParam(':additionalcost', $additionalcost, PDO::PARAM_STR);
         $query->bindParam(':date', $date, PDO::PARAM_STR);
@@ -119,7 +119,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Vehicle Title</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" value="<?php echo htmlentities($result->VehiclesTitle); ?>" name="VehiclesTitle" id="additionalcost" readonly>
+                                                                <input type="text" class="form-control" value="<?php echo htmlentities($result->VehiclesTitle); ?>" name="VehiclesTitle" id="VehiclesTitle" readonly>
                                                                 <!-- <select class="selectpicker" name="vehicle" id="vehicle" required>
                                                                     <option value="<php echo htmlentities($result->VehicleID); ?>"><php echo htmlentities($vtname = $result->VehiclesTitle); ?> </option>
                                                                     <php $ret = "select id,VehiclesTitle from tblvehicles";
