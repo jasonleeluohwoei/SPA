@@ -107,7 +107,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     <div class="col-sm-8">
                                                         <select class="selectpicker" name="vehicle" required>
                                                             <option value=""> Select </option>
-                                                            <?php $ret = "select id,VehiclesTitle from tblvehicles where VehiclesSaleType='Sale' AND VehiclesStatus='1'";
+                                                            <?php $ret = "select id,VehiclesTitle from tblvehicles";
                                                             $query = $dbh->prepare($ret);
                                                             //$query->bindParam(':id',$id, PDO::PARAM_STR);
                                                             $query->execute();

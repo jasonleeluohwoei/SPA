@@ -98,7 +98,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<th>Sale Price(RM)</th>
 												<th>Cost Price(RM)</th>
 												<th>Additional Cost(RM)</th>
-												<th>Status</th>
+												<!-- <th>Status</th> -->
 												<th>Action</th>
 											</tr>
 										</thead>
@@ -119,15 +119,15 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($result->PriceOfSale); ?></td>
                                                         <td><?php echo htmlentities($result->PriceOfCost); ?></td>
                                                         <td><?php echo htmlentities($result->AdditionalCost); ?></td>
-														<td>
-															<?php	
+														<!-- <td>
+															<php	
 															if($result->VehiclesStatus=="1"){
 																echo'<span class="label label-success">Active</span>';
 															}else{
 																echo'<span class="label label-danger">Inactive</span>';
 															}
 															?>															
-														</td>
+														</td> -->
 														<td>
 															<a href="edit-additional-cost.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
 															<a href="manage-additional-cost.php?del=<?php echo $result->id; ?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a>

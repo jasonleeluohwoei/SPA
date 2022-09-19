@@ -212,7 +212,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<?php if ($msg) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
 											<?php
 											$id = intval($_GET['id']);
-											$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid, SUM(tbladditionalcost.AdditionalCost) as TotalAdditionalCost, tbladditionalcost.VehicleID as VID from tblvehicles inner join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand inner join tbladditionalcost on tbladditionalcost.VehicleID=tblvehicles.id where tblvehicles.id=:id group by tbladditionalcost.VehicleID order by SUM(tbladditionalcost.AdditionalCost);";
+											$sql = "select tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid, IFNULL(c.TotalAdditionalCost , 0.00) as TotalAdditionalCost FROM tblvehicles LEFT JOIN tblbrands on tblbrands.id=tblvehicles.VehiclesBrand LEFT JOIN ( select VehicleID as VID, SUM(AdditionalCost) as TotalAdditionalCost from tbladditionalcost GROUP BY VehicleID) c ON (tblvehicles.id = c.VID) where tblvehicles.id=:id order by tblvehicles.id;";
 											$query = $dbh->prepare($sql);
 											$query->bindParam(':id', $id, PDO::PARAM_STR);
 											$query->execute();
@@ -363,19 +363,19 @@ if (strlen($_SESSION['alogin']) == 0) {
 																var d = document.getElementById("saletype").value;
 																var rental = document.getElementById("rentalbox");
 																var sale = document.getElementById("salebox");
-																var sale1 = document.getElementById("salebox1");
+																// var sale1 = document.getElementById("salebox1");
 																if (d == "Rental") {
 																	rental.style.display = "block";
 																	sale.style.display = "none";
-																	sale1.style.display = "none";
+																	// sale1.style.display = "none";
 																} else if (d == "Sale") {
 																	rental.style.display = "none";
 																	sale.style.display = "block";
-																	sale1.style.display = "block";
+																	// sale1.style.display = "block";
 																} else if (d == "Select") {
 																	rental.style.display = "none";
 																	sale.style.display = "none";
-																	sale1.style.display = "none";
+																	// sale1.style.display = "none";
 																}
 															}
 
