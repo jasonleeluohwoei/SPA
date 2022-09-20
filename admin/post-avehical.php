@@ -328,9 +328,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-2 control-label">Vehicle Plate</label>
+													<label class="col-sm-2 control-label">Vehicle Plate<span style="color:red">*</span></label>
 													<div class="col-sm-4">
-														<input type="text" name="vehicleplate" class="form-control">
+														<input type="text" name="vehicleplate" class="form-control" required>
 													</div>
 													<label class="col-sm-2 control-label">Vehicle Mileage (Per KM)<span style="color:red">*</span></label>
 													<div class="col-sm-4">
@@ -506,7 +506,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 												<div class="form-group">
 													<div class="col-sm-4">
-														Image 7<input type="file" name="img7" required>
+														Image 7<input type="file" name="img7">
 													</div>
 													<div class="col-sm-4">
 														Image 8<input type="file" name="img8">
