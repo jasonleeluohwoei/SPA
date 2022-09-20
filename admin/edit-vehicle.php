@@ -223,7 +223,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 													<form method="post" class="form-horizontal" enctype="multipart/form-data">
 														<div class="form-group">
-															<label class="col-sm-2 control-label">Vehicle Title<span style="color:red">*</span></label>
+															<label class="col-sm-2 control-label">Vehicle Model<span style="color:red">*</span></label>
 															<div class="col-sm-4">
 																<input type="text" name="vehicletitle" class="form-control" value="<?php echo htmlentities($result->VehiclesTitle) ?>" required>
 															</div>
