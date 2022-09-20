@@ -91,10 +91,10 @@ if (strlen($_SESSION['alogin']) == 0) {
 									<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 										<thead>
 											<tr>
-												<th>#</th>
+												<th>#</th>												
+												<th>Vehicle Plate</th>
 												<th>Vehicle Model</th>
 												<th>Brand</th>
-												<th>Vehicle Plate</th>
 												<th>Sale Type</th>
 												<th>Rental Price(RM)</th>
 												<th>Sale Price(RM)</th>
@@ -130,8 +130,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 												foreach ($results as $result) {				?>
 													<tr>
 														<td><?php echo htmlentities($cnt); ?></td>
-														<td><?php echo htmlentities($result->VehiclesTitle); ?></td>
-														<td><?php echo htmlentities($result->BrandName); ?></td>
 														<td>
 															<?php 
 															if($result->VehiclesPlate!=""){
@@ -141,6 +139,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 															}
 															?>
 														</td>
+														<td><?php echo htmlentities($result->VehiclesTitle); ?></td>
+														<td><?php echo htmlentities($result->BrandName); ?></td>
 														<td><?php echo htmlentities($result->VehiclesSaleType); ?></td>
 														<td><?php echo htmlentities($result->PricePerMonth); ?></td>
 														<td><?php echo htmlentities($result->PriceOfSale); ?></td>
