@@ -63,7 +63,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,Vimage10,Vimage11,Vimage12,
 		AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
 		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
-		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
+		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:vimage10,:vimage11,:vimage12,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 
 		$query = $dbh->prepare($sql);
@@ -172,7 +172,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,Vimage10,Vimage11,Vimage12,
 		AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
 		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
-		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
+		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,Vimage10,Vimage11,Vimage12,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 
 		$query = $dbh->prepare($sql);
