@@ -31,6 +31,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$vimage7 = $_FILES["img7"]["name"];
 		$vimage8 = $_FILES["img8"]["name"];
 		$vimage9 = $_FILES["img9"]["name"];
+		$vimage10 = $_FILES["img10"]["name"];
+		$vimage11 = $_FILES["img11"]["name"];
+		$vimage12 = $_FILES["img12"]["name"];
 		$airconditioner = $_POST['airconditioner'];
 		$powerdoorlocks = $_POST['powerdoorlocks'];
 		$antilockbrakingsys = $_POST['antilockbrakingsys'];
@@ -52,10 +55,13 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img7"]["tmp_name"], "img/vehicleimages/" . $_FILES["img7"]["name"]);
 		move_uploaded_file($_FILES["img8"]["tmp_name"], "img/vehicleimages/" . $_FILES["img8"]["name"]);
 		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
+		move_uploaded_file($_FILES["img10"]["tmp_name"], "img/vehicleimages/" . $_FILES["img10"]["name"]);
+		move_uploaded_file($_FILES["img11"]["tmp_name"], "img/vehicleimages/" . $_FILES["img11"]["name"]);
+		move_uploaded_file($_FILES["img12"]["tmp_name"], "img/vehicleimages/" . $_FILES["img12"]["name"]);
 
 		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerWeek,PricePerMonth,PriceOfCost,
-		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
-		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,Vimage10,Vimage11,Vimage12,
+		AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
 		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
 		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
@@ -84,6 +90,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':vimage7', $vimage7, PDO::PARAM_STR);
 		$query->bindParam(':vimage8', $vimage8, PDO::PARAM_STR);
 		$query->bindParam(':vimage9', $vimage9, PDO::PARAM_STR);
+		$query->bindParam(':vimage10', $vimage10, PDO::PARAM_STR);
+		$query->bindParam(':vimage11', $vimage11, PDO::PARAM_STR);
+		$query->bindParam(':vimage12', $vimage12, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
 		$query->bindParam(':antilockbrakingsys', $antilockbrakingsys, PDO::PARAM_STR);
@@ -131,6 +140,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$vimage7 = $_FILES["img7"]["name"];
 		$vimage8 = $_FILES["img8"]["name"];
 		$vimage9 = $_FILES["img9"]["name"];
+		$vimage10 = $_FILES["img10"]["name"];
+		$vimage11 = $_FILES["img11"]["name"];
+		$vimage12 = $_FILES["img12"]["name"];
 		$airconditioner = $_POST['airconditioner'];
 		$powerdoorlocks = $_POST['powerdoorlocks'];
 		$antilockbrakingsys = $_POST['antilockbrakingsys'];
@@ -152,10 +164,13 @@ if (strlen($_SESSION['alogin']) == 0) {
 		move_uploaded_file($_FILES["img7"]["tmp_name"], "img/vehicleimages/" . $_FILES["img7"]["name"]);
 		move_uploaded_file($_FILES["img8"]["tmp_name"], "img/vehicleimages/" . $_FILES["img8"]["name"]);
 		move_uploaded_file($_FILES["img9"]["tmp_name"], "img/vehicleimages/" . $_FILES["img9"]["name"]);
+		move_uploaded_file($_FILES["img10"]["tmp_name"], "img/vehicleimages/" . $_FILES["img10"]["name"]);
+		move_uploaded_file($_FILES["img11"]["tmp_name"], "img/vehicleimages/" . $_FILES["img11"]["name"]);
+		move_uploaded_file($_FILES["img12"]["tmp_name"], "img/vehicleimages/" . $_FILES["img12"]["name"]);
 
 		$sql = "INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,VehiclesSaleType,PricePerWeek,PricePerMonth,PriceOfCost,
-		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,AirConditioner,PowerDoorLocks,
-		AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
+		PriceOfSale,FuelType,ModelYear,SeatingCapacity,VehiclesPlate,VehiclesMileage,VehiclesStatus,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,Vimage6,Vimage7,Vimage8,Vimage9,Vimage10,Vimage11,Vimage12,
+		AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,
 		CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:saletype,:priceperweek,:pricepermonth,:priceofcost,:priceofsale,
 		:fueltype,:modelyear,:seatingcapacity,:vehicleplate,:vehiclemileage,:vehiclestatus,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:vimage6,:vimage7,:vimage8,:vimage9,:airconditioner,:powerdoorlocks,
 		:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
@@ -184,6 +199,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':vimage7', $vimage7, PDO::PARAM_STR);
 		$query->bindParam(':vimage8', $vimage8, PDO::PARAM_STR);
 		$query->bindParam(':vimage9', $vimage9, PDO::PARAM_STR);
+		$query->bindParam(':vimage10', $vimage10, PDO::PARAM_STR);
+		$query->bindParam(':vimage11', $vimage11, PDO::PARAM_STR);
+		$query->bindParam(':vimage12', $vimage12, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
 		$query->bindParam(':antilockbrakingsys', $antilockbrakingsys, PDO::PARAM_STR);
@@ -328,9 +346,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-2 control-label">Vehicle Plate</label>
+													<label class="col-sm-2 control-label">Vehicle Plate<span style="color:red">*</span></label>
 													<div class="col-sm-4">
-														<input type="text" name="vehicleplate" class="form-control">
+														<input type="text" name="vehicleplate" class="form-control" required>
 													</div>
 													<label class="col-sm-2 control-label">Vehicle Mileage (Per KM)<span style="color:red">*</span></label>
 													<div class="col-sm-4">
@@ -506,13 +524,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 												<div class="form-group">
 													<div class="col-sm-4">
-														Image 7<input type="file" name="img7" required>
+														Image 7<input type="file" name="img7">
 													</div>
 													<div class="col-sm-4">
 														Image 8<input type="file" name="img8">
 													</div>
 													<div class="col-sm-4">
 														Image 9<input type="file" name="img9">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-sm-4">
+														Image 10<input type="file" name="img10">
+													</div>
+													<div class="col-sm-4">
+														Image 11<input type="file" name="img11">
+													</div>
+													<div class="col-sm-4">
+														Image 12<input type="file" name="img12">
 													</div>
 												</div>
 												<div class="hr-dashed"></div>

@@ -260,9 +260,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 														</div>
 
 														<div class="form-group">
-															<label class="col-sm-2 control-label">Vehicle Plate</label>
+															<label class="col-sm-2 control-label">Vehicle Plate<span style="color:red">*</span></label>
 															<div class="col-sm-4">
-																<input type="text" name="vehicleplate" class="form-control" value="<?php echo htmlentities($result->VehiclesPlate); ?>">
+																<input type="text" name="vehicleplate" class="form-control" value="<?php echo htmlentities($result->VehiclesPlate); ?>" required>
 															</div>
 															<label class="col-sm-2 control-label">Vehicle Mileage (Per KM)<span style="color:red">*</span></label>
 															<div class="col-sm-4">
@@ -461,6 +461,35 @@ if (strlen($_SESSION['alogin']) == 0) {
 																} else { ?>
 																	<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage9); ?>" width="300" height="200" style="border:solid 1px #000">
 																	<a href="changeimage9.php?imgid=<?php echo htmlentities($result->id) ?>">Change Image 9</a>
+																<?php } ?>
+															</div>
+														</div>
+														<div class="form-group">
+															<div class="col-sm-4">
+																Image 10
+																<?php if ($result->Vimage10 == "") {
+																	echo htmlentities("File not available");
+																} else { ?>
+																	<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage10); ?>" width="300" height="200" style="border:solid 1px #000">
+																	<a href="changeimage10.php?imgid=<?php echo htmlentities($result->id) ?>">Change Image 10</a>
+																<?php } ?>
+															</div>
+															<div class="col-sm-4">
+																Image 11
+																<?php if ($result->Vimage11 == "") {
+																	echo htmlentities("File not available");
+																} else { ?>
+																	<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage11); ?>" width="300" height="200" style="border:solid 1px #000">
+																	<a href="changeimage11.php?imgid=<?php echo htmlentities($result->id) ?>">Change Image 11</a>
+																<?php } ?>
+															</div>
+															<div class="col-sm-4">
+																Image 12
+																<?php if ($result->Vimage12 == "") {
+																	echo htmlentities("File not available");
+																} else { ?>
+																	<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage12); ?>" width="300" height="200" style="border:solid 1px #000">
+																	<a href="changeimage12.php?imgid=<?php echo htmlentities($result->id) ?>">Change Image 12</a>
 																<?php } ?>
 															</div>
 
