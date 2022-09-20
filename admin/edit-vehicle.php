@@ -260,9 +260,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 														</div>
 
 														<div class="form-group">
-															<label class="col-sm-2 control-label">Vehicle Plate</label>
+															<label class="col-sm-2 control-label">Vehicle Plate<span style="color:red">*</span></label>
 															<div class="col-sm-4">
-																<input type="text" name="vehicleplate" class="form-control" value="<?php echo htmlentities($result->VehiclesPlate); ?>">
+																<input type="text" name="vehicleplate" class="form-control" value="<?php echo htmlentities($result->VehiclesPlate); ?>" required>
 															</div>
 															<label class="col-sm-2 control-label">Vehicle Mileage (Per KM)<span style="color:red">*</span></label>
 															<div class="col-sm-4">
