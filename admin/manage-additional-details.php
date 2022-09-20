@@ -93,9 +93,9 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Vehicle Plate </th>
                                                 <th>Vehicle Title</th>
                                                 <th>Brand </th>
+                                                <th>Vehicle Plate </th>
                                                 <!-- <th>Sale Price(RM)</th>
 												<th>Cost Price(RM)</th> -->
                                                 <th>Additional Cost(RM)</th>
@@ -118,6 +118,8 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 foreach ($results as $result) {                ?>
                                                     <tr>
                                                         <td><?php echo htmlentities($cnt); ?></td>
+                                                        <td><?php echo htmlentities($result->VehiclesTitle); ?></td>
+                                                        <td><?php echo htmlentities($result->BrandName); ?></td>
                                                         <td><?php
                                                             if ($result->VehiclesPlate != "") {
                                                                 echo htmlentities($result->VehiclesPlate);
@@ -125,9 +127,6 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                                 echo "-";
                                                             } ?>
                                                         </td>
-                                                        <td><?php echo htmlentities($result->VehiclesTitle); ?></td>
-                                                        <td><?php echo htmlentities($result->BrandName); ?></td>
-                                                        
                                                         <!-- <td><php echo htmlentities($result->PriceOfSale); ?></td>
                                                         <td><php echo htmlentities($result->PriceOfCost); ?></td> -->
                                                         <td><?php echo htmlentities($result->AdditionalCost); ?></td>

@@ -103,11 +103,11 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 <?php if ($error) { ?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($msg) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-4 control-label">Vehicle Plate</label>
+                                                    <label class="col-sm-4 control-label">Vehicle Title</label>
                                                     <div class="col-sm-8">
                                                         <select class="selectpicker" name="vehicle" required>
                                                             <option value=""> Select </option>
-                                                            <?php $ret = "select id,VehiclesPlate from tblvehicles";
+                                                            <?php $ret = "select id,VehiclesTitle from tblvehicles";
                                                             $query = $dbh->prepare($ret);
                                                             //$query->bindParam(':id',$id, PDO::PARAM_STR);
                                                             $query->execute();
@@ -115,7 +115,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                             if ($query->rowCount() > 0) {
                                                                 foreach ($results as $result) {
                                                             ?>
-                                                                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->VehiclesPlate); ?></option>
+                                                                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->VehiclesTitle); ?></option>
                                                             <?php }
                                                             } ?>
 
