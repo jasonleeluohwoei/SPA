@@ -107,7 +107,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     <div class="col-sm-8">
                                                         <select class="selectpicker" name="vehicle" required>
                                                             <option value=""> Select </option>
-                                                            <?php $ret = "select id,VehiclesPlate from tblvehicles";
+                                                            <?php $ret = "select id,VehiclesPlate, VehiclesTitle from tblvehicles";
                                                             $query = $dbh->prepare($ret);
                                                             //$query->bindParam(':id',$id, PDO::PARAM_STR);
                                                             $query->execute();
@@ -115,13 +115,15 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                             if ($query->rowCount() > 0) {
                                                                 foreach ($results as $result) {
                                                             ?>
-                                                                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->VehiclesPlate); ?></option>
+                                                                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->VehiclesPlate); ?> | <?php echo htmlentities($result->VehiclesTitle); ?></option>
                                                             <?php }
                                                             } ?>
 
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                
 
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label">Description</label>

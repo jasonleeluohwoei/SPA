@@ -94,7 +94,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                             <tr>
                                                 <th>#</th>
                                                 <th>Vehicle Plate </th>
-                                                <th>Vehicle Title</th>
+                                                <th>Vehicle Model</th>
                                                 <th>Brand </th>
                                                 <!-- <th>Sale Price(RM)</th>
 												<th>Cost Price(RM)</th> -->

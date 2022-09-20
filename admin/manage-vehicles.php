@@ -92,7 +92,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Vehicle Title</th>
+												<th>Vehicle Model</th>
 												<th>Brand</th>
 												<th>Vehicle Plate</th>
 												<th>Sale Type</th>
