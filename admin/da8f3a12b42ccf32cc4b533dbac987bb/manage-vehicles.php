@@ -92,7 +92,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Vehicle Title</th>
+												<th>Vehicle Plate</th>
+												<th>Vehicle Model</th>
 												<th>Brand </th>
 												<th>Sale Type</th>
 												<th>Rental Price(RM)</th>
@@ -120,7 +121,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 										</tfoot> -->
 										<tbody>
 
-											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesSaleType,tblvehicles.PricePerMonth,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.VehiclesStatus,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+											<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.VehiclesPlate,tblvehicles.VehiclesSaleType,tblvehicles.PricePerMonth,tblvehicles.PriceOfSale,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.VehiclesStatus,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
 											$query = $dbh->prepare($sql);
 											$query->execute();
 											$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -129,6 +130,15 @@ if (strlen($_SESSION['alogin']) == 0) {
 												foreach ($results as $result) {				?>
 													<tr>
 														<td><?php echo htmlentities($cnt); ?></td>
+														<td>
+															<?php
+															if ($result->VehiclesPlate != "") {
+																echo htmlentities($result->VehiclesPlate);
+															} else {
+																echo "-";
+															}
+															?>
+														</td>
 														<td><?php echo htmlentities($result->VehiclesTitle); ?></td>
 														<td><?php echo htmlentities($result->BrandName); ?></td>
 														<td><?php echo htmlentities($result->VehiclesSaleType); ?></td>
@@ -137,13 +147,13 @@ if (strlen($_SESSION['alogin']) == 0) {
 														<td><?php echo htmlentities($result->FuelType); ?></td>
 														<td><?php echo htmlentities($result->ModelYear); ?></td>
 														<td>
-															<?php	
-															if($result->VehiclesStatus=="1"){
-																echo'<span class="label label-success">Active</span>';
-															}else{
-																echo'<span class="label label-danger">Inactive</span>';
+															<?php
+															if ($result->VehiclesStatus == "1") {
+																echo '<span class="label label-success">Active</span>';
+															} else {
+																echo '<span class="label label-danger">Inactive</span>';
 															}
-															?>															
+															?>
 														</td>
 														<td>
 															<a href="edit-vehicle.php?id=<?php echo $result->id; ?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;

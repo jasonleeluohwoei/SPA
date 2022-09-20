@@ -37,7 +37,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 		$sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,
 		VehiclesPlate=:vehicleplate,VehiclesMileage=:vehiclemileage,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,
-		FuelType=:fueltype,VehiclesSaleType=:saletype,PriceOfSale=:priceofsale,
+		FuelType=:fueltype,VehiclesSaleType=:saletype,PriceOfCost=:priceofcost,PriceOfSale=:priceofsale,
 		PricePerWeek=:priceperweek,PricePerMonth=:pricepermonth,VehiclesStatus=:vehiclestatus,AirConditioner=:airconditioner,
 		PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,
 		PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
@@ -53,7 +53,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
 		$query->bindParam(':priceperweek', $priceperweek, PDO::PARAM_STR);
 		$query->bindParam(':pricepermonth', $pricepermonth, PDO::PARAM_STR);
-		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);	
+		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
+		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
 		$query->bindParam(':vehiclestatus', $vehiclestatus, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
@@ -102,7 +103,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 		$sql = "update tblvehicles set VehiclesTitle=:vehicletitle,VehiclesBrand=:brand,VehiclesOverview=:vehicleoverview,
 		VehiclesPlate=:vehicleplate,VehiclesMileage=:vehiclemileage,ModelYear=:modelyear,SeatingCapacity=:seatingcapacity,
-		FuelType=:fueltype,VehiclesSaleType=:saletype,PriceOfSale=:priceofsale,
+		FuelType=:fueltype,VehiclesSaleType=:saletype,PriceOfCost=:priceofcost,PriceOfSale=:priceofsale,
 		PricePerWeek=:priceperweek,PricePerMonth=:pricepermonth,VehiclesStatus=:vehiclestatus,AirConditioner=:airconditioner,
 		PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,
 		PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where id=:id ";
@@ -118,7 +119,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 		$query->bindParam(':saletype', $saletype, PDO::PARAM_STR);
 		$query->bindParam(':priceperweek', $priceperweek, PDO::PARAM_STR);
 		$query->bindParam(':pricepermonth', $pricepermonth, PDO::PARAM_STR);
-		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);	
+		$query->bindParam(':priceofcost', $priceofcost, PDO::PARAM_STR);
+		$query->bindParam(':priceofsale', $priceofsale, PDO::PARAM_STR);
 		$query->bindParam(':vehiclestatus', $vehiclestatus, PDO::PARAM_STR);
 		$query->bindParam(':airconditioner', $airconditioner, PDO::PARAM_STR);
 		$query->bindParam(':powerdoorlocks', $powerdoorlocks, PDO::PARAM_STR);
@@ -210,7 +212,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 											<?php if ($msg) { ?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
 											<?php
 											$id = intval($_GET['id']);
-											$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:id";
+											$sql = "select tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid, IFNULL(c.TotalAdditionalCost , 0.00) as TotalAdditionalCost FROM tblvehicles LEFT JOIN tblbrands on tblbrands.id=tblvehicles.VehiclesBrand LEFT JOIN ( select VehicleID as VID, SUM(AdditionalCost) as TotalAdditionalCost from tbladditionalcost GROUP BY VehicleID) c ON (tblvehicles.id = c.VID) where tblvehicles.id=:id order by tblvehicles.id;";
 											$query = $dbh->prepare($sql);
 											$query->bindParam(':id', $id, PDO::PARAM_STR);
 											$query->execute();
@@ -221,7 +223,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 													<form method="post" class="form-horizontal" enctype="multipart/form-data">
 														<div class="form-group">
-															<label class="col-sm-2 control-label">Vehicle Title<span style="color:red">*</span></label>
+															<label class="col-sm-2 control-label">Vehicle Model<span style="color:red">*</span></label>
 															<div class="col-sm-4">
 																<input type="text" name="vehicletitle" class="form-control" value="<?php echo htmlentities($result->VehiclesTitle) ?>" required>
 															</div>
@@ -258,9 +260,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 														</div>
 
 														<div class="form-group">
-															<label class="col-sm-2 control-label">Vehicle Plate</label>
+															<label class="col-sm-2 control-label">Vehicle Plate<span style="color:red">*</span></label>
 															<div class="col-sm-4">
-																<input type="text" name="vehicleplate" class="form-control" value="<?php echo htmlentities($result->VehiclesPlate); ?>">
+																<input type="text" name="vehicleplate" class="form-control" value="<?php echo htmlentities($result->VehiclesPlate); ?>" required>
 															</div>
 															<label class="col-sm-2 control-label">Vehicle Mileage (Per KM)<span style="color:red">*</span></label>
 															<div class="col-sm-4">
@@ -291,6 +293,25 @@ if (strlen($_SESSION['alogin']) == 0) {
 																	<option value="Hybrid">Hybrid</option>
 																</select>
 															</div>
+															<div class="form-group">
+																<label class="col-sm-2 control-label">Status<span style="color:red">*</span></label>
+																<div class="col-sm-4">
+																	<select class="selectpicker" name="vehiclestatus" required>
+																		<?php if ($result->VehiclesStatus == 1) {
+																		?>
+																			<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>
+																		<?php } else { ?>
+																			<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>
+																		<?php } ?>
+																		<option value="1">Active</option>
+																		<option value="0">Inactive</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="hr-dashed"></div>
+														<h4><b>Price Info</b></h4>
+														<div class="form-group">
 															<label for="saletype" class="col-sm-2 control-label">Select Sale Type<span style="color:red">*</span></label>
 															<div class="col-sm-4">
 																<select id="saletype" class="selectpicker" name="saletype" onchange="Selecttype(this.value);" required>
@@ -326,49 +347,44 @@ if (strlen($_SESSION['alogin']) == 0) {
 																<input id="priceofsale" type="text" name="priceofsale" class="form-control" value="<?php echo htmlentities($result->PriceOfSale); ?>" required>
 															</div>
 														</div>
+														<div id="salebox1" class="form-group">
+															<!-- <label class="col-sm-2 control-label">Total Additional Cost (RM)</label>
+															<div class="col-sm-4">
+																<input id="totaladditionalcost" type="text" name="totaladditionalcost" class="form-control" value="<?php //echo htmlentities($result->TotalAdditionalCost); ?>" readonly>
+															</div>
+															<div id="tpoc">
+																<label class="col-sm-2 control-label">Total Price of Cost (RM)</label>
+																<div class="col-sm-4">
+																	<input id="totalpriceofcost" type="text" name="totalpriceofcost" class="form-control" value="<?php //echo htmlentities(number_format((float)$result->PriceOfCost + $result->TotalAdditionalCost, 2, '.', '')); ?>" readonly>
+																</div>
+															</div> -->
+														</div>
+
 														<script>
 															function Selecttype() {
 																var d = document.getElementById("saletype").value;
 																var rental = document.getElementById("rentalbox");
 																var sale = document.getElementById("salebox");
-
+																var tpoc = document.getElementById("tpoc");
 																if (d == "Rental") {
 																	rental.style.display = "block";
 																	sale.style.display = "none";
-
-																} else {
+																	tpoc.style.display = "none";
+																} else if (d == "Sale") {
 																	rental.style.display = "none";
 																	sale.style.display = "block";
+																	tpoc.style.display = "block";
+																} else if (d == "Select") {
+																	rental.style.display = "none";
+																	sale.style.display = "none";
+																	tpoc.style.display = "none";
 																}
 															}
 
 															Selecttype();
 														</script>
+														<br><br>
 
-														<div class="form-group">
-
-															<label class="col-sm-2 control-label">Status<span style="color:red">*</span></label>
-															<div class="col-sm-4">
-																<select class="selectpicker" name="vehiclestatus" required>
-																	<!-- <option value="<php echo htmlentities($result->VehiclesStatus); ?>"> <php echo htmlentities($result->VehiclesStatus); ?> </option> -->
-																	<!-- <php 
-																	if($result->VehiclesStatus =="1"){
-																		echo'<option value="<php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>';
-																	}else{
-																		echo'<option value="<php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>';
-																	}
-																	?> -->
-																	<?php if ($result->VehiclesStatus == 1) {
-																	?>
-																		<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Active </option>
-																	<?php } else { ?>
-																		<option value="<?php echo htmlentities($result->VehiclesStatus); ?>"> Inactive </option>
-																	<?php } ?>
-																	<option value="1">Active</option>
-																	<option value="0">Inactive</option>
-																</select>
-															</div>
-														</div>
 
 														<div class="hr-dashed"></div>
 														<div class="form-group">
